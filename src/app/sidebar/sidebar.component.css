@@ -1,0 +1,22 @@
+
+mat-drawer{
+    width: 200px;
+    background-color: rgb(40, 165, 169);
+}
+mat-drawer-container{
+    height: 100vh;
+    background:gainsboro;
+}
+.mat-icon{
+    vertical-align: center;
+    margin-right: 1rem;
+}
+.mat-divider{
+    border-color: rgba(82, 86, 90, 0.605);
+}
+.mat-list-item:hover{
+    background:rgba(190, 193, 197, 0.605) !important;
+}
+.list-item-active{
+    background:rgba(218, 220, 224, 0.605) !important;
+}

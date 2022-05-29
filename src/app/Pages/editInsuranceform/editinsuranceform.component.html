@@ -1,0 +1,388 @@
+<div class="modal-dialog" style="max-width: 100% !important;margin: 0 !important;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title text-info">Mobile Insurance Form</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" [mat-dialog-close]="true"
+                aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <div class="clearfix col-sm-12">
+                    <span style="float: left;">{{operation}} {{tabValue}}</span>
+                    <button type="button" class="btn btn-outline-success btn-sm" style="float: right;"
+                        (click)="onSubmitAddress()">Update</button>
+                </div>
+                <div class="clearfix mx-auto" style="float: none;">
+                    <div class="row">
+                        <form [formGroup]="addressForm" novalidate>
+                            <mat-tab-group (selectedTabChange)="addTabValue($event)" [(selectedIndex)]="selectedIndex">
+                                <mat-tab label="Account Information">
+                                    <ng-template mat-tab-label>
+                                        <mat-icon class="example-tab-icon">account_balance</mat-icon>
+                                        Account
+                                    </ng-template>
+                                    <div class="card mt-3">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="email">Email: </label>
+                                                    <input id="email" class="form-control" type="email"
+                                                        formControlName="mailId">
+                                                </div>
+                                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="Username">Username: </label>
+                                                    <input id="Username" class="form-control" type="text"
+                                                        formControlName="username" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer text-muted">
+                                            <div class="d-flex justify-content-end">
+                                                <button type="button" class="btn btn-info btn-sm"
+                                                    (click)="selectedIndex = 1">
+                                                    Next <mat-icon style="vertical-align: middle;">navigate_next
+                                                    </mat-icon>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+
+                                <mat-tab label="Personal Information">
+                                    <ng-template mat-tab-label>
+                                        <mat-icon class="example-tab-icon">account_circle</mat-icon>
+                                        Personal
+                                    </ng-template>
+                                    <div class="card mt-3">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="fullName">Full Name: </label>
+                                                    <input id="fullName" class="form-control" type="text"
+                                                        formControlName="fullName" placeholder="Full Name">
+                                                </div>
+                                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="address">Address: </label>
+                                                    <input id="address" class="form-control" type="text"
+                                                        formControlName="address" placeholder="Address">
+                                                </div>
+                                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="contactOne">Contact One: </label>
+                                                    <input id="contactOne" class="form-control" type="text"
+                                                        formControlName="contactOne" placeholder="Contact No.">
+                                                </div>
+                                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="contactTwo">Contact Two: </label>
+                                                    <input id="contactTwo" class="form-control" type="text"
+                                                        formControlName="contactTwo"
+                                                        placeholder="Alternate Contact No.">
+                                                </div>
+                                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="aadhaarNumber">Aadhaar Number: </label>
+                                                    <input id="aadhaarNumber" class="form-control" type="text"
+                                                        formControlName="aadhaarNumber" placeholder="Aadhaar Card No.">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer text-muted">
+                                            <div class="btn-group" style="float: right;" role="group"
+                                                aria-label="Basic example">
+                                                <button class="btn btn-info btn-sm" (click)="selectedIndex = 0">
+                                                    <mat-icon style="vertical-align: middle;">navigate_before</mat-icon>
+                                                    Prev
+                                                </button>
+
+                                                <button type="button" class="btn btn-info btn-sm"
+                                                    (click)="selectedIndex = 2">
+                                                    Next <mat-icon style="vertical-align: middle;">navigate_next
+                                                    </mat-icon>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+
+                                <mat-tab label="Device Information">
+                                    <ng-template mat-tab-label>
+                                        <mat-icon class="example-tab-icon">device_unknown</mat-icon>
+                                        Device Info
+                                    </ng-template>
+
+                                    <div class="card mt-3">
+                                        <div class="card-body">
+                                            <div class="row" formGroupName="mobileDetails">
+                                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="mobile_company">Company: </label>
+                                                    <input id="mobile_company" class="form-control" type="text"
+                                                        name="mobile_company" formControlName="company"
+                                                        placeholder="Mobile Company" />
+                                                </div>
+                                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="mobile_model">Model: </label>
+                                                    <input id="mobile_model" class="form-control" type="text"
+                                                        name="mobile_model" formControlName="model"
+                                                        placeholder="Mobile model" />
+                                                </div>
+                                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="imei_number">IMEI: </label>
+                                                    <input id="imei_number" class="form-control" type="text"
+                                                        name="imei_number" formControlName="imei"
+                                                        placeholder="IMEI No." />
+                                                </div>
+                                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="color">color: </label>
+                                                    <input id="color" class="form-control" type="text" name="color"
+                                                        formControlName="color" placeholder="Mobile Color." />
+                                                </div>
+                                                <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                                                    formGroupName="physicalDetails">
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label dp-grid"> Dent
+                                                            <input type="checkbox" formControlName="Dent"
+                                                                class="form-check-input" value="true">
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label dp-grid"> Scratch
+                                                            <input type="checkbox" formControlName="Scratch"
+                                                                class="form-check-input" value="true">
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label dp-grid"> Camera Front
+                                                            <input type="checkbox" formControlName="CameraFront"
+                                                                class="form-check-input" value="true">
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label dp-grid"> Camera Back
+                                                            <input type="checkbox" formControlName="CameraBack"
+                                                                class="form-check-input" value="true">
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label dp-grid"> Speakers
+                                                            <input type="checkbox" formControlName="Speakers"
+                                                                class="form-check-input" value="true">
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label dp-grid"> Mic
+                                                            <input type="checkbox" formControlName="Mic"
+                                                                class="form-check-input" value="true">
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label dp-grid"> Network
+                                                            <input type="checkbox" formControlName="Network"
+                                                                class="form-check-input" value="true">
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label dp-grid"> Headphone Jack
+                                                            <input type="checkbox" formControlName="HeadphoneJack"
+                                                                class="form-check-input" value="true">
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label dp-grid"> Charger Socket
+                                                            <input type="checkbox" formControlName="ChargerSocket"
+                                                                class="form-check-input" value="true">
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label dp-grid"> Screen Damage
+                                                            <input type="checkbox" formControlName="ScreenDamage"
+                                                                class="form-check-input" value="true">
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check-inline">
+                                                        <label class="form-check-label dp-grid"> Fingerprint
+                                                            <input type="checkbox" formControlName="Fingerprint"
+                                                                class="form-check-input" value="true">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="card-footer text-muted">
+                                            <div class="btn-group" style="float: right;" role="group"
+                                                aria-label="Basic example">
+                                                <button class="btn btn-info btn-sm" (click)="selectedIndex = 1">
+                                                    <mat-icon style="vertical-align: middle;">navigate_before</mat-icon>
+                                                    Prev
+                                                </button>
+
+                                                <button type="button" class="btn btn-info btn-sm"
+                                                    (click)="selectedIndex = 3">
+                                                    Next <mat-icon style="vertical-align: middle;">navigate_next
+                                                    </mat-icon>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </mat-tab>
+
+                                <mat-tab label="Upload Photos">
+                                    <ng-template mat-tab-label>
+                                        <mat-icon class="example-tab-icon">cloud_upload</mat-icon>
+                                        Upload Photos
+                                    </ng-template>
+                                    <div class="card mt-3">
+                                        <div class="card-body mb-3">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <img [src]="aadhaarPicFront" width="200px"
+                                                        height="100px" alt="aadhaar pic front">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <img [src]="aadhaarPicBack" width="200px"
+                                                        height="100px" alt="aadhaar pic back">
+                                                </div>
+                                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="aadhaar_pic_front">Upload Aadhaar Card Front</label>
+                                                    <input id="aadhaar_pic_front" class="form-control form-control-sm" type="file"
+                                                        name="aadhaar_pic_front"
+                                                        placeholder="Upload Aadhaar Front" accept="image/*"
+                                                        (change)="onChange($event,'aadhaar_pic_front')" />
+                                                </div>
+                                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="aadhaar_pic_back">Upload Aadhaar Card Back</label>
+                                                    <input id="aadhaar_pic_back" class="form-control form-control-sm" type="file"
+                                                        name="aadhaar_pic_back"
+                                                        accept="image/*" placeholder="Upload Aadhaar"
+                                                        (change)="onChange($event,'aadhaar_pic_back')" />
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <img [src]="mobilePhotoFront" width="200px"
+                                                        height="100px" alt="mobile photo front">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <img [src]="mobilePhotoBack" width="200px"
+                                                        height="100px" alt="mobile photo back">
+                                                </div>
+                                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="mobile_photo_front">Upload Mobile Photo Front.</label>
+                                                    <input id="mobile_photo_front" class="form-control form-control-sm" type="file"
+                                                        name="mobile_photo_front"
+                                                        accept="image/*" placeholder="Upload Mobile Photo Front."
+                                                        (change)="onChange($event,'mobile_photo_front')" />
+                                                </div>
+                                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="mobile_photo_back">Upload Mobile Photo Back.</label>
+                                                    <input id="mobile_photo_back" class="form-control form-control-sm" type="file"
+                                                        name="mobile_photo_back"
+                                                        accept="image/*" placeholder="Upload Mobile Photo Back."
+                                                        (change)="onChange($event,'mobile_photo_back')" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <mat-progress-bar mode="determinate" value="{{progress}}"></mat-progress-bar>
+                                        <div class="card-footer text-muted clearfix">
+                                            <button *ngIf="!isAddAddress" type="button" style="float: left;" 
+                                            class="btn btn-outline-success btn-sm" 
+                                            (click)="onUpload()">upload photos</button>
+                                            <span *ngIf="fileCount">uploding one file in total {{fileCount}} files.</span>
+                                            <div class="btn-group" style="float: right;" role="group"
+                                                aria-label="Basic example">
+                                                <button class="btn btn-info btn-sm" (click)="selectedIndex = 2">
+                                                    <mat-icon style="vertical-align: middle;">navigate_before</mat-icon>
+                                                    Prev
+                                                </button>
+
+                                                <button type="button" class="btn btn-info btn-sm"
+                                                    (click)="selectedIndex = 4">
+                                                    Next <mat-icon style="vertical-align: middle;">navigate_next
+                                                    </mat-icon>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+
+                                <mat-tab label="Payment Information">
+                                    <ng-template mat-tab-label>
+                                        <mat-icon class="example-tab-icon">payment</mat-icon>
+                                        Payment Information
+                                    </ng-template>
+                                    <div class="card mt-3">
+                                        <div class="card-body">
+                                            <div class="radio-group">
+                                                <div class="img-fluid">
+                                                    <img alt="Payment QR CODE" src="assets/images/qrscan.png"
+                                                        width="200px" style="margin-left: 14%;height: 100%;">
+                                                </div> <br>
+                                            </div>
+                                            <div class="row" formGroupName="paymentDetails">
+                                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="Amount" class="pay">Amount</label>
+                                                    <input id="Amount" class="form-control" type="text" name="Amount"
+                                                        formControlName="Amount" placeholder="Enter Amount" />
+                                                </div>
+                                                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <label for="TransactionId" class="pay">Transaction ID</label>
+                                                    <input id="TransactionId" class="form-control" type="text"
+                                                        name="TransactionId" formControlName="TransactionId"
+                                                        placeholder="Enter Transaction Id" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer text-muted">
+                                            <div class="btn-group" style="float: right;" role="group"
+                                            aria-label="Basic example">
+                                                <button class="btn btn-info btn-sm" (click)="selectedIndex = 3">
+                                                    <mat-icon style="vertical-align: middle;">navigate_before</mat-icon>
+                                                    Prev
+                                                </button>
+
+                                                <button *ngIf="!isAddAddress" class="btn btn-info btn-sm"
+                                                 (click)="selectedIndex = 5">
+                                                    Next <mat-icon style="vertical-align: middle;">navigate_next
+                                                    </mat-icon>
+                                                </button>
+                                                <button *ngIf="isAddAddress" type="button"
+                                                 class="btn btn-outline-success btn-sm"
+                                                (click)="onSubmitAddress()">Create</button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+
+                                <mat-tab label="Congratulations !">
+                                    <ng-template mat-tab-label>
+                                        <mat-icon class="example-tab-icon">done_all</mat-icon>
+                                        Congratulations !
+                                    </ng-template>
+                                    <div class="card mt-3 mb-2">
+                                        <div class="card-body">
+                                            <div class="form-card" style="overflow: hidden;">
+                                                <h2 class="fs-title text-center">Congratulations !</h2> <br><br>
+                                                <div class="row justify-content-center">
+                                                    <div class="col-3"> <img
+                                                            src="https://img.icons8.com/color/96/000000/ok--v2.png"
+                                                            class="fit-image"> </div>
+                                                </div> <br><br>
+                                                <div class="row justify-content-center">
+                                                    <div class="col-7 text-center">
+                                                        <h5>Your Mobile Insurance Has Been Under Process</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-tab>
+                            </mat-tab-group>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

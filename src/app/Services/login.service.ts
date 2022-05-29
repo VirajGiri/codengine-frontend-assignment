@@ -19,6 +19,11 @@ export class LoginService extends AbstractService{
     return this.http.post<User>(`${this.localUrl}api/login`,body, {params:httpParams})
     .pipe(catchError(this.handleError))
   }
+  loadSidebar(role:any){
+    const body = {'role':role}
+    return this.http.post<any>(`${this.localUrl}api/get_rolebaseSidebar`,body)
+    .pipe(catchError(this.handleError))
+  }
 
   login(userData:any){
     localStorage.setItem('userData',JSON.stringify(userData));
@@ -35,14 +40,16 @@ export class LoginService extends AbstractService{
   }
 
   goToHome(){
-    this.router.navigate(['address'])
+    this.router.navigate(['in'])
   }
 
   getData(): UserData{
     const user = localStorage.getItem('userData');
     return user === null ? null : JSON.parse(user);
   }
-
+  isLoggedIn(){
+   return localStorage.getItem("isUserLogin");
+  }
   removeItems(){
     localStorage.removeItem("userData");
     localStorage.removeItem("isUserLogin");

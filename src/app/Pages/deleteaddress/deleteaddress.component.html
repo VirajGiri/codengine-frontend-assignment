@@ -1,8 +1,13 @@
-<form novalidate>
-    <div class="form-group">
-    <h1> Please confirm to delete Address</h1>
+<div class="modal-dialog" style="max-width: 100% !important;margin: 0 !important;">
+  <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title text-denger">Delete !</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" [mat-dialog-close]="true"
+              aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-title text-denger">Please confirm to delete Insurance Form</p>
+        <button type="submit" class="btn btn-danger btn-sm" style="float: right;" mat-dialog-close (click)="onSubmit()">Delete</button>
+      </div>
     </div>
-    <div class="form-group">
-    <button type="submit" class="btn btn-primary" mat-dialog-close (click)="onSubmit()">Submit</button>
-    </div>
-  </form>
+  </div>

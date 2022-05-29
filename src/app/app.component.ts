@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { LoaderService } from './Services/loader.service';
+import { Router } from '@angular/router';
+import { LoginService } from './Services/login.service';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,13 @@ import { LoaderService } from './Services/loader.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'frontend';
-  constructor(public loaderService:LoaderService){}
+  title = 'NicksMobileGallery';
+  constructor(
+    private router: Router,
+    private login:LoginService,
+  ) {
+    if (this.login.isLoggedIn()) {
+      this.router.navigate(['in']);
+    }
+  }
 }

@@ -1,0 +1,54 @@
+
+mat-toolbar{
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: rgb(25, 116, 119);
+}
+.loader-container{
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+}
+.spinner-container{
+ position: absolute;
+ height: 100%;
+ width: 100%;
+ background-color: rgba(90, 121, 148, 0.516);   
+ opacity: 0.4;
+ z-index: 99;
+}
+
+::ng-deep .mat-progress-bar-fill::after {
+    background-color: #404340;
+}
+
+::ng-deep .mat-spinner-buffer {
+    background: #E4E8EB;
+}
+
+
+button{
+    border: 0;
+    outline: none;
+    background: transparent;
+}
+ul,li{
+    list-style: none;
+}
+.user{
+    font-size: 14px;
+    vertical-align: center;
+}
+.user-image{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+.user-image-icon{
+    height: 18px;
+    font-size: 16px;
+}
+.mat-menu-content::ng-deep{
+    width: 160px;
+}

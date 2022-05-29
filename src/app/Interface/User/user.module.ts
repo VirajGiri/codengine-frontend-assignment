@@ -6,6 +6,7 @@ export class User {
 }
 export class UserData {
     Name?: string
+    Role?:string
     isActive?: Boolean
     username?: string
     _id?:string

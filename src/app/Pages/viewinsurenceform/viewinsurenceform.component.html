@@ -1,0 +1,75 @@
+
+<div class="container-fluid">
+  <div class="modal-header">
+    <h2 class="text-center text-info font-sofia">Mobile Insurance Form</h2>
+    <button type="button" class="btn-close" style="float: right;" data-bs-dismiss="modal" [mat-dialog-close]="true"
+                aria-label="Close"></button>
+  </div>
+    
+<div class="card font-Varela">
+    <div class="card-header font-Messiri">
+        <b>Insurance-Id:</b> {{InsuranceFormData.uniqueId}}
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <h3 class="font-Messiri mb-0 text-info">Customer Details</h3>
+        <div class="col-sm-4">
+          <span style="text-align: left;">
+            <p><b class="text-secondary">Name: </b>{{InsuranceFormData.fullName}}<br>
+              <b class="text-secondary">Mobile No: </b>{{InsuranceFormData.contactOne}} / {{InsuranceFormData.contactTwo}}<br>
+              <b class="text-secondary">Email: </b>{{InsuranceFormData.mailId}}<br>
+            </p>
+          </span>
+        </div>
+        <div class="col-sm-4">
+          <p><b class="text-secondary">Username: </b>{{InsuranceFormData.username}}  <br>
+            <b class="text-secondary">Aadhaar No: </b>{{InsuranceFormData.aadhaarNumber}}<br>
+            <b class="text-secondary">Address: </b>{{InsuranceFormData.address}}<br>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <h3 class="font-Messiri mb-0 text-info ">Mobile Phone Details</h3>
+        <div class="col-sm-4">
+          <span style="text-align: left;">
+            <p><b class="text-secondary">Company: </b>{{InsuranceFormData.mobileDetails.company}}<br>
+              <b class="text-secondary">Model No: </b>{{InsuranceFormData.mobileDetails.model}}<br>
+              <b class="text-secondary">IMEI: </b>{{InsuranceFormData.mobileDetails.imei}}<br>
+            </p>
+          </span>
+        </div>
+        <div class="col-sm-4">
+          <p>
+            <b class="text-secondary">Color: </b>{{InsuranceFormData.mobileDetails.color}}<br>
+            <b class="text-secondary">Physical Details: </b>
+            <span *ngIf="InsuranceFormData.mobileDetails.physicalDetails">{{getPhysicalDetails(InsuranceFormData.mobileDetails.physicalDetails)}}</span>
+            <br>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <span style="text-align: left;">
+            <h3 class="font-Messiri mb-0 text-info">Payment Details</h3>
+            <p><b class="text-secondary">Amount: </b>{{InsuranceFormData.paymentDetails.Amount}}<br>
+              <b class="text-secondary">TransactionId: </b>{{InsuranceFormData.paymentDetails.TransactionId}}<br>
+            </p>
+          </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <!-- <h3 class="font-Messiri mb-0 text-warning">Your Card is in Under Process.</h3> -->
+        </div>
+        <div class="col-sm-12">
+          <app-virtual-card [customerDetails]="InsuranceFormData"></app-virtual-card>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <h3 class="font-Messiri mb-0 text-danger">Your Card is in Under Process.</h3>
+        <!-- <button class="btn btn-primary btn-sm" (click)="OnEditAddress(InsuranceFormData)">Edit Form</button> -->
+      </div>
+  </div>
+</div>
+

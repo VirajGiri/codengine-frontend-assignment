@@ -1,0 +1,30 @@
+
+<div class="loader-container">
+    <mat-progress-bar *ngIf="loaderService.isLoading | async" mode="indeterminate"></mat-progress-bar>
+</div>
+<div class="spinner-container" *ngIf="loaderService.isLoading | async">
+    <mat-spinner  style="top: 50%;left: 50%;"></mat-spinner>
+</div>
+<mat-toolbar class="shadow">
+    <mat-toolbar-row class="justify-content-between">
+    <button mat-icon-button (click)="toggleSidebarFunc()"><mat-icon>menu</mat-icon></button>
+   
+    <div class="row mr-2 ml-auto">
+        <!-- <img src="" alt="" class="user-image mr-1 p-2"/> -->
+        <ul>
+            <li>
+                <button mat-button [matMenuTriggerFor]="menu"
+                class="user mt-2 d-flex align-items-center">
+                <mat-icon class="user-image mr-1 pl-2 mt-4">account_circle</mat-icon>{{userData.Name}}
+                <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="onLogOut()">
+                        <mat-icon >exit_to_app</mat-icon>Logout
+                    </button>
+                </mat-menu>
+            </li>
+        </ul>
+    </div>
+    </mat-toolbar-row>
+</mat-toolbar>

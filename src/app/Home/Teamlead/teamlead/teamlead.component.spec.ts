@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddeditaddressComponent } from './addeditaddress.component';
+import { TeamleadComponent } from './teamlead.component';
 
-describe('AddeditaddressComponent', () => {
-  let component: AddeditaddressComponent;
-  let fixture: ComponentFixture<AddeditaddressComponent>;
+describe('TeamleadComponent', () => {
+  let component: TeamleadComponent;
+  let fixture: ComponentFixture<TeamleadComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddeditaddressComponent ]
+      declarations: [ TeamleadComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddeditaddressComponent);
+    fixture = TestBed.createComponent(TeamleadComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

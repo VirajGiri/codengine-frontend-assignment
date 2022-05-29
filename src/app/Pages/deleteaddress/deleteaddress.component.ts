@@ -19,7 +19,7 @@ export class DeleteaddressComponent implements OnInit {
 
   onSubmit(){
     console.log("this.data.updateData",this.data.updateData);
-    this.address.DeleteAddress(this.data.updateData._id).subscribe(res =>{
+    this.address.DeleteInsurance(this.data.updateData._id).subscribe(res =>{
       console.log(res);
       this.snackbar.open("Address Deleted !",res.message,{
         duration:4000

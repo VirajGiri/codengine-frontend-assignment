@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { PagenotfoundComponent } from './Pages/pagenotfound/pagenotfound.component';
-import { AddressComponent } from './address/address.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
@@ -24,22 +23,34 @@ import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
-import { AddeditaddressComponent } from './Pages/addeditaddress/addeditaddress.component';
+import {Editinsuranceform } from './Pages/editInsuranceform/editinsuranceform.component';
 import { DeleteaddressComponent } from './Pages/deleteaddress/deleteaddress.component';
+import { SidebarModule } from './sidebar/sidebar.module';
+import { RedirectGuardService } from './Services/redirect-guard.service';
+import { MatTabsModule } from '@angular/material/tabs';
+import { ViewinsurenceformComponent } from './Pages/viewinsurenceform/viewinsurenceform.component';
+import { VirtualCardComponent } from './Pages/virtual-card/virtual-card.component';
+import { AddeditUserComponent } from './Pages/addedit-user/addedit-user.component';
+import { AddinsuranceformComponent } from './Pages/addinsuranceform/addinsuranceform.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     PagenotfoundComponent,
-    AddressComponent,
-    AddeditaddressComponent,
-    DeleteaddressComponent
+    DeleteaddressComponent,
+    ViewinsurenceformComponent,
+    VirtualCardComponent,
+    Editinsuranceform,
+    AddeditUserComponent,
+    AddinsuranceformComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
+    SidebarModule,
+    BrowserAnimationsModule,
     MatSidenavModule,
     MatToolbarModule,
     MatMenuModule,
@@ -55,12 +66,15 @@ import { DeleteaddressComponent } from './Pages/deleteaddress/deleteaddress.comp
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDialogModule    
+    MatDialogModule,
+    MatTabsModule,
   ],
   providers: [
+    RedirectGuardService,
     {provide:HTTP_INTERCEPTORS,useClass:IntercepterService,multi:true},
-    {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptService,multi:true}
+    {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptService,multi:true},
   ],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }
