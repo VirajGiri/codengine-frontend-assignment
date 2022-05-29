@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { DialogService } from 'src/app/Services/dialog.service';
 import { LoginService } from 'src/app/Services/login.service';
-import { AdminService } from '../Services/admin.service';
+import { UsersService } from 'src/app/Services/users.service';
+import { AdminService } from '../../Home/Admin/Services/admin.service';
 
 @Component({
   selector: 'app-users',
@@ -16,6 +17,8 @@ export class UsersComponent implements OnInit {
   UsersList:any = [];
   constructor(
     private admin:AdminService,
+    private login:LoginService,
+    private user:UsersService,
     private dialog:DialogService,
     public loginService:LoginService) { }
 
@@ -24,7 +27,7 @@ export class UsersComponent implements OnInit {
   }
 
   getUsersList(){
-    this.admin.GetAllUsers().subscribe(res=>{
+    this.user.GetAllUsers().subscribe(res=>{
       console.warn("GetAddressList",res);
       this.UsersList = res;
       this.displayedColumns = ['SrNo','Role','Name','Username', 'MobileNo','Actions'];

@@ -24,7 +24,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
-import { UsersComponent } from '../Home/Admin/users/users.component';
+import { UsersComponent } from '../Pages/users/users.component';
+import { ProfileComponent } from '../Pages/profile/profile.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { UsersComponent } from '../Home/Admin/users/users.component';
     ReceptionistComponent,
     TeamleadComponent,
     AdminComponent,
-    UsersComponent
+    UsersComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

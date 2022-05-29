@@ -8,11 +8,12 @@ import { LoginService } from 'src/app/Services/login.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CounsellorService extends AbstractService{
+export class TeamleadService extends AbstractService{
 
   constructor(protected http: HttpClient, private login:LoginService) {
     super();
    }
+
 
   GetInsurenceFormList():Observable<insuranceFormData>{
     const httpParams = new HttpParams()

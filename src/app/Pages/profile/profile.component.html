@@ -1,0 +1,35 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card mt-3">
+                <div class="card-header">
+                   Your Profile
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12 mt-3 text-center">
+                            <img src="https://www.w3schools.com/howto/img_avatar.png"
+                             alt="Avatar" style="width:200px" class="profile-img">
+                            <h3 class="card-title font-sofia"><b>{{userDetails.Name}}</b></h3>
+                            <p class="card-text text-left">
+                                <b>Email: </b>{{userDetails.Email}}<br>
+                                <b>MobileNo: </b>{{userDetails.MobileNo}}<br>
+                                <b>Completed Enquiry: </b>{{userDetails.CompletedEnquiry}}<br>
+                                <b>Assign Forms: </b>{{userDetails.AssignEnquiry}}<br><br>
+                                <b>Address: </b>{{userDetails.Address}}, {{userDetails.Landmark}} , {{userDetails.City}}, {{userDetails.State}}, {{userDetails.Zip}}.<br>
+                
+                            </p>
+                            <button class="btn btn-primary" (click)="OnEditProfile()">Edit Profile</button>
+                        </div>
+                    </div>
+                   
+                    
+                    
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

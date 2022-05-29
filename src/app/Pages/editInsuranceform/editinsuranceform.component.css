@@ -235,11 +235,3 @@ select.list-dt:focus {
 .card{
     height: 350px;
 }
-/* mat-tab div {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-} */

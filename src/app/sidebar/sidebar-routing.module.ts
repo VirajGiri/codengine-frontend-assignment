@@ -7,7 +7,8 @@ import { NgModule } from '@angular/core';
 import { CounsellorComponent } from '../Home/Counsellor/counsellor/counsellor.component';
 import { ReceptionistComponent } from '../Home/Receptionist/receptionist/receptionist.component';
 import { TeamleadComponent } from '../Home/Teamlead/teamlead/teamlead.component';
-import { UsersComponent } from '../Home/Admin/users/users.component';
+import { UsersComponent } from '../Pages/users/users.component';
+import { ProfileComponent } from '../Pages/profile/profile.component';
 
 
 
@@ -31,6 +32,10 @@ const routes: Routes = [
             {
               path: 'users',
               component: UsersComponent
+            },
+            {
+              path: 'profile',
+              component: ProfileComponent
             }
           ],
           canActivate: [AuthGuardService],
@@ -47,6 +52,10 @@ const routes: Routes = [
               path: 'home',
               component: CounsellorComponent
             },
+            {
+              path: 'profile',
+              component: ProfileComponent
+            }
           ],
           canActivate: [AuthGuardService],
           data: {
@@ -55,7 +64,20 @@ const routes: Routes = [
         },
         {
           path: 'receptionist',
-          component: ReceptionistComponent,
+          children: [
+            {
+              path: '',
+              component: ReceptionistComponent
+            },
+            {
+              path: 'home',
+              component: ReceptionistComponent
+            },
+            {
+              path: 'profile',
+              component: ProfileComponent
+            }
+          ],
           canActivate: [AuthGuardService],
           data: {
             role: 'receptionist'
@@ -63,7 +85,25 @@ const routes: Routes = [
         },
         {
           path: 'teamlead',
-          component: TeamleadComponent,
+          children: [
+            {
+              path: '',
+              component: TeamleadComponent
+            },
+            {
+              path: 'home',
+              component: TeamleadComponent
+            },
+            {
+              path: 'users',
+              component: UsersComponent
+            },
+            {
+              path: 'profile',
+              component: ProfileComponent
+            }
+
+          ],
           canActivate: [AuthGuardService],
           data: {
             role: 'teamlead'

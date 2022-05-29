@@ -34,5 +34,5 @@ export class SidebarComponent implements OnInit {
   getFullPath(items:any){
     return items.parentPath + items.path + items.childPath;
   }
-
+  
 }

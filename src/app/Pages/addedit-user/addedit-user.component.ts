@@ -4,9 +4,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DomSanitizer } from '@angular/platform-browser';
 import { UserData } from 'src/app/Home/Admin/Interfaces/user-data.module';
-import { AdminService } from 'src/app/Home/Admin/Services/admin.service';
-import { AddressService } from 'src/app/Services/address.service';
 import { DialogService } from 'src/app/Services/dialog.service';
+import { UsersService } from 'src/app/Services/users.service';
 
 @Component({
   selector: 'app-addedit-user',
@@ -35,7 +34,7 @@ export class AddeditUserComponent implements OnInit {
     _id: new FormControl('', []),
   })
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
-  private admin:AdminService,
+  private user:UsersService,
   private snackbar:MatSnackBar,
   private sanitizer: DomSanitizer,
   public dialogRef: MatDialogRef<AddeditUserComponent>) { 
@@ -58,7 +57,7 @@ export class AddeditUserComponent implements OnInit {
 
   onCreateUser(){
     this.isSubmitted = true;
-    this.admin.AddUser(this.userForm.value.Name,this.userForm.value.Email,
+    this.user.AddUser(this.userForm.value.Name,this.userForm.value.Email,
       this.userForm.value.Role,this.userForm.value.username,
       this.userForm.value.Password, this.userForm.value.Address,
       this.userForm.value.City, this.userForm.value.State,
@@ -84,7 +83,7 @@ export class AddeditUserComponent implements OnInit {
     console.log(this.userForm.value);
     
     this.isSubmitted = true;
-    this.admin.UpdateUser(this.userForm.value._id,this.userForm.value.Name,
+    this.user.UpdateUser(this.userForm.value._id,this.userForm.value.Name,
       this.userForm.value.Role,this.userForm.value.AssignEnquiry,
       this.userForm.value.CompletedEnquiry, this.userForm.value.Address,
       this.userForm.value.City, this.userForm.value.State,

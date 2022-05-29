@@ -24,7 +24,12 @@ export class LoginService extends AbstractService{
     return this.http.post<any>(`${this.localUrl}api/get_rolebaseSidebar`,body)
     .pipe(catchError(this.handleError))
   }
-
+  userProfile(){
+    const body = {'_id':this.getData()._id}
+    return this.http.post<any>(`${this.localUrl}api/get_user_profile`,body)
+    .pipe(catchError(this.handleError))
+  }
+  
   login(userData:any){
     localStorage.setItem('userData',JSON.stringify(userData));
     localStorage.setItem("isUserLogin",'true')
