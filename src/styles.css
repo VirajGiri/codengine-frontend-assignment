@@ -1,12 +1,217 @@
-/* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+/* ===================================================
+   NMG — Grey / White Professional Theme
+=================================================== */
 
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 
-.custom-dialog-class{
-width: 100vw;
-height: 100vh;
+:root {
+  --nmg-bg:              #f1f3f5;
+  --nmg-white:           #ffffff;
+  --nmg-sidebar:         #1c2333;
+  --nmg-sidebar-hover:   #2d3748;
+  --nmg-sidebar-active:  #374151;
+  --nmg-navbar:          #ffffff;
+  --nmg-primary:         #374151;
+  --nmg-primary-hover:   #1f2937;
+  --nmg-text:            #111827;
+  --nmg-text-muted:      #6b7280;
+  --nmg-border:          #e5e7eb;
+  --nmg-card-shadow:     0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+  --nmg-table-header:    #f9fafb;
+  --nmg-row-hover:       #f3f4f6;
 }
 
+* { box-sizing: border-box; }
+
+body {
+  background: var(--nmg-bg);
+  color: var(--nmg-text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  margin: 0;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #9ca3af; border-radius: 3px; }
+
+/* ── Dialog ── */
+.custom-dialog-class { width: 100vw; height: 100vh; }
 mat-dialog-container {
-    background: gainsboro !important;
- }
+  background: var(--nmg-white) !important;
+  border-radius: 12px !important;
+}
+
+/* ── Page layout ── */
+.page-wrapper {
+  padding: 24px;
+  background: var(--nmg-bg);
+  min-height: calc(100vh - 64px);
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.page-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--nmg-text);
+  margin: 0;
+}
+
+.page-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ── Search box ── */
+.search-box {
+  display: flex;
+  align-items: center;
+  background: var(--nmg-white);
+  border: 1px solid var(--nmg-border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  gap: 6px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-box:focus-within {
+  border-color: #9ca3af;
+  box-shadow: 0 0 0 3px rgba(156,163,175,0.2);
+}
+.search-box mat-icon {
+  color: var(--nmg-text-muted);
+  font-size: 18px; width: 18px; height: 18px;
+}
+.search-box input {
+  border: none; outline: none;
+  background: transparent;
+  font-size: 0.875rem;
+  color: var(--nmg-text);
+  width: 220px;
+}
+.search-box input::placeholder { color: var(--nmg-text-muted); }
+
+/* ── Action buttons ── */
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+  line-height: 1;
+}
+.btn-create {
+  background: var(--nmg-primary);
+  color: #fff;
+}
+.btn-create:hover { background: var(--nmg-primary-hover); color: #fff; }
+.btn-excel {
+  background: var(--nmg-white);
+  color: var(--nmg-text);
+  border: 1px solid var(--nmg-border);
+}
+.btn-excel:hover { background: var(--nmg-row-hover); }
+
+/* ── Table card ── */
+.table-card {
+  background: var(--nmg-white);
+  border-radius: 10px;
+  box-shadow: var(--nmg-card-shadow);
+  overflow: hidden;
+}
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* ── NMG Mat-Table ── */
+.nmg-table {
+  width: 100%;
+  background: transparent !important;
+}
+.nmg-table .mat-header-row,
+.nmg-table .mat-mdc-header-row {
+  background: var(--nmg-table-header) !important;
+  border-bottom: 2px solid var(--nmg-border) !important;
+}
+.nmg-table .mat-header-cell,
+.nmg-table .mat-mdc-header-cell {
+  color: var(--nmg-text-muted) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 12px 16px !important;
+  border-bottom: none !important;
+  white-space: nowrap;
+}
+.nmg-table .mat-row,
+.nmg-table .mat-mdc-row {
+  border-bottom: 1px solid var(--nmg-border) !important;
+  transition: background 0.15s;
+}
+.nmg-table .mat-row:last-child,
+.nmg-table .mat-mdc-row:last-child { border-bottom: none !important; }
+.nmg-table .mat-row:hover,
+.nmg-table .mat-mdc-row:hover { background: var(--nmg-row-hover) !important; }
+.nmg-table .mat-cell,
+.nmg-table .mat-mdc-cell {
+  font-size: 0.875rem !important;
+  color: var(--nmg-text) !important;
+  padding: 12px 16px !important;
+  border-bottom: none !important;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+/* ── Status badges ── */
+.badge-verified {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 10px; border-radius: 20px;
+  background: #d1fae5; color: #065f46;
+  font-size: 0.72rem; font-weight: 700;
+}
+.badge-pending {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 10px; border-radius: 20px;
+  background: #fee2e2; color: #991b1b;
+  font-size: 0.72rem; font-weight: 700;
+}
+
+/* ── Icon action buttons in table ── */
+.icon-btn {
+  width: 30px; height: 30px;
+  border-radius: 6px; border: none; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  margin: 0 2px; transition: all 0.15s;
+}
+.icon-btn mat-icon { font-size: 16px; width: 16px; height: 16px; }
+.icon-btn.edit-btn  { background: #eff6ff; color: #1d4ed8; }
+.icon-btn.edit-btn:hover  { background: #dbeafe; }
+.icon-btn.delete-btn { background: #fff1f2; color: #be123c; }
+.icon-btn.delete-btn:hover { background: #ffe4e6; }
+.icon-btn.view-btn  { background: #f0fdf4; color: #15803d; }
+.icon-btn.view-btn:hover  { background: #dcfce7; }
+
+/* ── No-data row ── */
+.no-data-cell {
+  text-align: center;
+  padding: 48px 16px !important;
+  color: var(--nmg-text-muted);
+  font-size: 0.9rem;
+}
+

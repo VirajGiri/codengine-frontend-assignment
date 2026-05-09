@@ -1,21 +1,53 @@
 
-
 <mat-drawer-container>
-    <mat-drawer mode="side" [opened]="sidebarOpen" class="shadow"> 
-        <div class="logo py-4 text-center font-Varela animate-charcter">
-            <!-- <img src="https://www.w3schools.com/howto/img_avatar.png" 
-            alt="Profile Image" class="img-logo"> NMG -->
-            NICKS MOBILE GALLERY
-        </div>
-        <mat-divider></mat-divider>
-        <mat-nav-list *ngFor="let items of sidebarItems">
-            <a mat-list-item [routerLink]="getFullPath(items)" routerLinkActive="list-item-active">
-                <mat-icon>{{items.icon}}</mat-icon>{{items.moduleName}}
-            </a>
-        </mat-nav-list>
-    </mat-drawer>
-    <mat-drawer-content>      
-        <app-navbar (toggleSidebar)="sidebarToggeler()"></app-navbar>
-        <router-outlet></router-outlet>
-    </mat-drawer-content>
+
+  <mat-drawer mode="side" [opened]="sidebarOpen">
+
+    <!-- Brand -->
+    <div class="sidebar-brand">
+      <div class="brand-icon">
+        <mat-icon>phone_android</mat-icon>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">NMG</span>
+        <span class="brand-full">Nicks Mobile Gallery</span>
+      </div>
+    </div>
+
+    <!-- Role badge -->
+    <div class="role-badge-wrap">
+      <span class="role-badge">
+        <mat-icon class="role-icon">manage_accounts</mat-icon>
+        {{ userRole | titlecase }}
+      </span>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <!-- Nav items -->
+    <nav class="sidebar-nav">
+      <a *ngFor="let item of sidebarItems"
+         class="nav-item"
+         [routerLink]="getFullPath(item)"
+         routerLinkActive="nav-item-active">
+        <span class="nav-icon-wrap">
+          <mat-icon>{{ item.icon }}</mat-icon>
+        </span>
+        <span class="nav-label">{{ item.moduleName }}</span>
+      </a>
+    </nav>
+
+    <!-- Bottom spacer -->
+    <div class="sidebar-footer">
+      <span class="footer-version">v2.0</span>
+    </div>
+
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <app-navbar (toggleSidebar)="sidebarToggeler()"></app-navbar>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+
 </mat-drawer-container>
+

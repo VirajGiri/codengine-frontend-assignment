@@ -1,0 +1,62 @@
+.confirm-dlg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 32px 24px;
+  min-width: 320px;
+  text-align: center;
+}
+.confirm-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #fee2e2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.confirm-icon mat-icon {
+  color: #ef4444;
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+.confirm-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 8px;
+}
+.confirm-msg {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+.confirm-actions {
+  display: flex;
+  gap: 10px;
+}
+.conf-btn {
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.conf-cancel {
+  background: #f3f4f6;
+  color: #374151;
+}
+.conf-cancel:hover { background: #e5e7eb; }
+.conf-delete {
+  background: #ef4444;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.conf-delete:hover { background: #dc2626; }

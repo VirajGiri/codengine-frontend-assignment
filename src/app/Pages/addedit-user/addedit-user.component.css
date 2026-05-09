@@ -1,3 +1,118 @@
-.input-error {
-    border: red 1px solid;
+/* -- Dialog layout -- */
+.dlg-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-width: 520px;
+  max-width: 700px;
+  background: #fff;
+}
+
+.dlg-header {
+  padding: 18px 24px 14px;
+  border-bottom: 1px solid var(--nmg-border);
+}
+.dlg-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--nmg-primary);
+}
+
+.dlg-body {
+  padding: 20px 24px;
+}
+
+.dlg-footer {
+  padding: 14px 24px;
+  border-top: 1px solid var(--nmg-border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* -- Grid -- */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 20px;
+  margin-bottom: 6px;
+}
+
+.field-full {
+  grid-column: 1 / -1;
+}
+
+/* -- Fields -- */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.field-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.field-input {
+  padding: 8px 10px;
+  border: 1px solid var(--nmg-border);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  color: #1f2937;
+  background: #f9fafb;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.field-input:focus {
+  border-color: #93c5fd;
+  background: #fff;
+}
+.field-input[readonly] {
+  background: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+.field-select {
+  cursor: pointer;
+}
+.field-error {
+  border-color: #f87171 !important;
+}
+.field-error-msg {
+  font-size: 0.72rem;
+  color: #ef4444;
+}
+
+/* -- Section divider -- */
+.section-divider {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 16px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--nmg-border);
+}
+
+/* -- Buttons -- */
+.dlg-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.dlg-btn-primary {
+  background: #374151;
+  color: #fff;
+}
+.dlg-btn-primary:hover {
+  background: #1f2937;
 }

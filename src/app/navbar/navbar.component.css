@@ -1,31 +1,49 @@
-
-mat-toolbar{
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    background-color: rgb(25, 116, 119);
-}
-.loader-container{
-    position: fixed;
-    width: 100%;
-    z-index: 99;
-}
-.spinner-container{
- position: absolute;
- height: 100%;
- width: 100%;
- background-color: rgba(90, 121, 148, 0.516);   
- opacity: 0.4;
- z-index: 99;
+/* Navbar — white with subtle shadow */
+mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--nmg-white) !important;
+  color: var(--nmg-text) !important;
+  border-bottom: 1px solid var(--nmg-border);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  min-height: 56px !important;
 }
 
-::ng-deep .mat-progress-bar-fill::after {
-    background-color: #404340;
+mat-toolbar-row {
+  padding: 0 16px !important;
 }
 
-::ng-deep .mat-spinner-buffer {
-    background: #E4E8EB;
+mat-toolbar button[mat-icon-button] mat-icon {
+  color: var(--nmg-text-muted);
 }
+
+.user {
+  color: var(--nmg-text) !important;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.user mat-icon { color: var(--nmg-text-muted); }
+
+/* Loader bar */
+.loader-container {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 999;
+}
+
+.spinner-container {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.5);
+  z-index: 998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ul { list-style: none; margin: 0; padding: 0; }
 
 
 button{

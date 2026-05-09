@@ -1,23 +1,39 @@
-.mat-table {
-    overflow-x: scroll;
-  }
-  mat-header-cell, mat-cell {
-    justify-content: center;
-  }
-  .mat-cell,
-  .mat-header-cell {
-    word-wrap: initial;
-    display: table-cell;
-    padding: 0px 10px;
-    line-break: unset;
-    white-space: nowrap;
-    overflow: hidden;
-    vertical-align: middle;
-  }
-  
-  .mat-row,
-  .mat-header-row {
-    display: table-row;
+/* user avatar initial circle */
+.user-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #e0e7ff;
+  color: #4338ca;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* role pill */
+.role-chip {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #475569;
+  text-transform: capitalize;
+}
+
+.mat-row,
+.mat-header-row {
+  display: table-row;
   }
 
   .table-container {

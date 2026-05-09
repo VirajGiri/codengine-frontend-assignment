@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { UserData } from 'src/app/Home/Admin/Interfaces/user-data.module';
 import { DialogService } from 'src/app/Services/dialog.service';
@@ -18,7 +19,7 @@ import { DialogNavComponent } from '../Shared/dialog-nav/dialog-nav.component';
   selector: 'app-addedit-user',
   templateUrl: './addedit-user.component.html',
   styleUrls: ['./addedit-user.component.css'],
-  imports: [CommonModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatSelectModule, DialogNavComponent]
+  imports: [CommonModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatSelectModule, MatIconModule, DialogNavComponent]
 })
 export class AddeditUserComponent implements OnInit {
   operation:any

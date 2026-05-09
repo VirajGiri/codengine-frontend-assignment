@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { UsersService } from 'src/app/Services/users.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { UsersService } from 'src/app/Services/users.service';
   selector: 'app-delete-user',
   templateUrl: './delete-user.component.html',
   styleUrls: ['./delete-user.component.css'],
-  imports: [CommonModule, MatDialogModule, MatButtonModule]
+  imports: [CommonModule, MatDialogModule, MatButtonModule, MatIconModule]
 })
 export class DeleteUserComponent implements OnInit {
 

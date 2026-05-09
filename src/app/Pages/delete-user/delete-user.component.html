@@ -1,13 +1,13 @@
-<div class="modal-dialog" style="max-width: 100% !important;margin: 0 !important;">
-    <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title text-denger">Delete !</h3>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" [mat-dialog-close]="true"
-                aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p class="modal-title text-denger">Please confirm to delete User</p>
-          <button type="submit" class="btn btn-danger btn-sm" style="float: right;" mat-dialog-close (click)="onSubmit()">Delete</button>
-        </div>
-      </div>
-    </div>
+<div class="confirm-dlg">
+  <div class="confirm-icon">
+    <mat-icon>person_remove</mat-icon>
+  </div>
+  <h3 class="confirm-title">Delete User</h3>
+  <p class="confirm-msg">This action cannot be undone. Are you sure you want to delete this user?</p>
+  <div class="confirm-actions">
+    <button class="conf-btn conf-cancel" [mat-dialog-close]="true">Cancel</button>
+    <button class="conf-btn conf-delete" mat-dialog-close (click)="onSubmit()">
+      <mat-icon style="font-size:16px;width:16px;height:16px">delete</mat-icon> Delete
+    </button>
+  </div>
+</div>
