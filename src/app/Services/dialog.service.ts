@@ -4,8 +4,10 @@ import { UserData } from '../Home/Admin/Interfaces/user-data.module';
 import { addressData } from '../Interface/address/address.module';
 import { AddeditUserComponent } from '../Pages/addedit-user/addedit-user.component';
 import { AddinsuranceformComponent } from '../Pages/addinsuranceform/addinsuranceform.component';
+import { DeleteUserComponent } from '../Pages/delete-user/delete-user.component';
 import { DeleteaddressComponent } from '../Pages/deleteaddress/deleteaddress.component';
 import { Editinsuranceform } from '../Pages/editInsuranceform/editinsuranceform.component';
+import { ViewUserComponent } from '../Pages/view-user/view-user.component';
 import { ViewinsurenceformComponent } from '../Pages/viewinsurenceform/viewinsurenceform.component';
 
 @Injectable({
@@ -76,6 +78,27 @@ export class DialogService {
         updateData:updateData
       },
       panelClass:"custom-dialog-class"
+    });
+    return userDialog.afterClosed();
+  }
+  ViewUser(updateData:UserData){
+    const userDialog = this.dialog.open(ViewUserComponent, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: '100%',
+      width: '100%',
+      data: {
+        userData:updateData
+      },
+      panelClass:"custom-dialog-class"
+    });
+    return userDialog.afterClosed();
+  }
+  DeleteUser(updateData:UserData){
+    const userDialog = this.dialog.open(DeleteUserComponent, {
+      data: {
+        updateData:updateData
+      },
     });
     return userDialog.afterClosed();
   }

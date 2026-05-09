@@ -34,7 +34,7 @@ export class AdminComponent implements OnInit {
     this.admin.GetInsurenceFormList().subscribe(res=>{
       console.warn("GetAddressList",res);
       this.AddressList = res;
-      this.displayedColumns = ['SrNo','UniqueId','Date','Verification', 'FullName', 'Contact','Actions'];
+      this.displayedColumns = ['SrNo','UniqueId','Date','Verification', 'FullName', 'Contact','FormBy','Actions'];
       this.dataSource = new MatTableDataSource(this.AddressList);
     })
   }

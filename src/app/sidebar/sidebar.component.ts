@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../Services/login.service';
+import { UsersService } from '../Services/users.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,12 +16,18 @@ export class SidebarComponent implements OnInit {
   constructor(
     private router: Router,
     private login:LoginService,
+    private user:UsersService,
   ) {
 
     this.userRole = this.login.getData().Role;
     this.login.loadSidebar(this.userRole).subscribe(res=>{
       console.log('loadSidebar',res);
       this.sidebarItems = res;
+      this.sidebarItems.forEach((element:any) => {
+        if(element.module == "Users"){
+          this.user.setUserRoles(element.allowedRoles);
+        }
+      });
     })
     this.router.navigate(['in/'+this.userRole]);
    }

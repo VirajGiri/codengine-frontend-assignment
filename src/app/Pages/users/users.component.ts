@@ -20,7 +20,8 @@ export class UsersComponent implements OnInit {
     private login:LoginService,
     private user:UsersService,
     private dialog:DialogService,
-    public loginService:LoginService) { }
+    public loginService:LoginService) { 
+    }
 
   ngOnInit(): void {
     this.getUsersList();
@@ -28,7 +29,6 @@ export class UsersComponent implements OnInit {
 
   getUsersList(){
     this.user.GetAllUsers().subscribe(res=>{
-      console.warn("GetAddressList",res);
       this.UsersList = res;
       this.displayedColumns = ['SrNo','Role','Name','Username', 'MobileNo','Actions'];
       this.dataSource = new MatTableDataSource(this.UsersList);
@@ -53,10 +53,16 @@ export class UsersComponent implements OnInit {
     });
   }
   OnDeleteUser(userData:any){
-
+    this.dialog.DeleteUser(userData).subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.getUsersList();
+    });
   }
   OnViewUser(userData:any){
-
+    // this.dialog.ViewUser(userData).subscribe(result => {
+    //   console.log(`Dialog result: ${result}`);
+    //   this.getUsersList();
+    // });
   }
 
 }

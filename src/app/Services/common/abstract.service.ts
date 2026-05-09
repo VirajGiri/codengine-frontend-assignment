@@ -7,7 +7,9 @@ import { throwError } from 'rxjs/internal/observable/throwError';
 })
 export class AbstractService {
 
-  public localUrl: string = 'http://localhost:21011/';
+  // public localUrl: string = 'http://localhost:21011/';
+  // public localUrl:string = 'http://3.109.154.121:21011/';
+  public localUrl:string = 'http://13.233.124.163:21011/';
   
   constructor() { }
   protected handleError = (error: HttpErrorResponse) => {

@@ -54,7 +54,7 @@ export class AddinsuranceformComponent implements OnInit {
     uniqueId:new FormControl('', []),
     userId:new FormControl('', []),
     _id:new FormControl('', []),
-    isActive:new FormControl('', []),
+    isActive:new FormControl('true', []),
     isDeleted:new FormControl('', []),
     isVerified:new FormControl('', []),
     createdAt:new FormControl('', []),
@@ -85,7 +85,7 @@ export class AddinsuranceformComponent implements OnInit {
     'mobile_photo_back': ''
   }]
 
-
+  title = 'Mobile Insurance Form'
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
   private address:AddressService,
   private snackbar:MatSnackBar,
@@ -109,6 +109,7 @@ export class AddinsuranceformComponent implements OnInit {
   }
   onChange(event:any,pic:string) {
     console.log(event.target.files);
+    this.isUploadPhoto = true;
     var reader = new FileReader();
     if(pic == 'aadhaar_pic_front'){
       reader.readAsDataURL(event.target.files[0]); 
@@ -161,11 +162,13 @@ export class AddinsuranceformComponent implements OnInit {
             this.currentFile = file;
             this.address.upload(this.currentFile,insurenceId,this.selectedFiles[element].filefor).subscribe((event: any) => {
                 if(event){
+                  this.isUploadPhoto = false;
                   if (event.type === HttpEventType.UploadProgress) {
                     this.progress = Math.round(100 * event.loaded / event.total);
                   } else if (event instanceof HttpResponse) {
                     console.log("event",event);
                     if(event.body.success){
+                      
                       this.message = event.body.message;
                       this.fileCount -=1;
                       this.selectedIndex = 4;
@@ -209,6 +212,35 @@ export class AddinsuranceformComponent implements OnInit {
       }
       // this.downloadedFiles[0][pathFor] = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(Blob));
     });
+  }
+  
+  onNext(currentIndex:number){
+    if(currentIndex == 0){
+      if(this.insuranceForm.value.mailId == ''){
+        alert("Email id empty");
+      }else{
+        if(this.insuranceForm.value.password == this.insuranceForm.value.confirm_password && this.insuranceForm.value.password != '' ){
+          this.selectedIndex = 1; 
+        }else{
+          alert("Enter same password");
+        }
+      }
+    }
+    if(currentIndex == 1){
+     
+        if(this.insuranceForm.value.fullName == ''){
+          alert("fullName is empty");
+        }
+        if(this.insuranceForm.value.contactOne == ''){
+          alert("contactOne is empty"); 
+        }
+        if(this.insuranceForm.value.aadhaarNumber == ''){
+          alert("aadhaarNumber is empty");
+        }
+        if(this.insuranceForm.value.fullName != '' && this.insuranceForm.value.contactOne != '' && this.insuranceForm.value.aadhaarNumber != ''){
+        this.selectedIndex = 2
+        }
+    }
   }
 
 

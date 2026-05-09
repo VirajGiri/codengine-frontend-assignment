@@ -31,7 +31,7 @@ export class AddressService extends AbstractService{
       'mobileDetails': mobileDetails,
       'paymentDetails':paymentDetails,
       'userId':this.login.getData()['_id'],
-      'isActive':false,
+      'isActive':true,
       'isDeleted':false,
       'isVerified':false,
       'formBy':this.login.getData()['Role']

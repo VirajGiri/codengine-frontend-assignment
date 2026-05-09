@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError } from 'rxjs';
+import { Observable, catchError, Subject } from 'rxjs';
 import { UserData, UserDataRes } from '../Home/Admin/Interfaces/user-data.module';
 import { AbstractService } from './common/abstract.service';
 import { LoginService } from './login.service';
@@ -10,6 +10,7 @@ import { LoginService } from './login.service';
 })
 export class UsersService extends AbstractService{
 
+  userRoles = new Subject();
   constructor(protected http: HttpClient, private login:LoginService) {
     super();
    }
@@ -74,6 +75,22 @@ export class UsersService extends AbstractService{
             'Zip':Zip
     }
     return this.http.post<UserDataRes>(`${this.localUrl}api/update_user`,body, {params:httpParams})
+    .pipe(catchError(this.handleError))
+  }
+  setUserRoles(data:any){
+    // this.userRoles.next(data);
+    localStorage['allowedRoles'] = JSON.stringify(data);
+  }
+  getUserRoles(){
+    // return this.userRoles.asObservable();
+    return localStorage['allowedRoles'];
+  }
+  deleteUser(id:string):Observable<UserDataRes>{
+    const body = {
+      '_id':id
+    }
+    const httpParams = new HttpParams()
+    return this.http.post<UserDataRes>(`${this.localUrl}api/delete_user`,body, {params:httpParams})
     .pipe(catchError(this.handleError))
   }
 }

@@ -64,14 +64,18 @@
             <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
           </ng-container>
 
-          <!-- Location Column -->
+          <!-- Contact Column -->
           <ng-container matColumnDef="Contact">
             <th mat-header-cell *matHeaderCellDef> Contact </th>
             <td mat-cell *matCellDef="let element"> {{element.contactOne}} </td>
           </ng-container>
+           <!-- FormBy Column -->
+           <ng-container matColumnDef="FormBy">
+            <th mat-header-cell *matHeaderCellDef> Form By </th>
+            <td mat-cell *matCellDef="let element"> {{element.formBy}} </td>
+          </ng-container>
 
-
-
+          
           <ng-container matColumnDef="Actions">
             <th mat-header-cell *matHeaderCellDef> Actions </th>
             <td mat-cell *matCellDef="let element">

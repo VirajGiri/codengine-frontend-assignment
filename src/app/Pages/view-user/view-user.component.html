@@ -1,0 +1,77 @@
+<app-dialog-nav [title]="title"></app-dialog-nav>
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="card mt-3">
+                <div class="card-header">
+                    {{userData.Name}} Form Details.
+                 </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                                <label class="btn btn-outline-primary" for="btnradio1">Today</label>
+                              
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="btnradio2">Week</label>
+                              
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="btnradio3">Month</label>
+                              </div>
+                        </div>
+                        <div class="col-sm-12">
+                            
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="alert alert-info" role="alert">
+                                A simple info alert—check it out!
+                                {{userData | json}}
+                            </div>
+                        </div>
+                    </div>
+        
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text"></p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card mt-3">
+                <div class="card-header">
+                   Your Profile
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12 mt-3 text-center">
+                            <img src="https://www.w3schools.com/howto/img_avatar.png"
+                             alt="Avatar" style="width:160px" class="profile-img">
+                            </div>
+                            <div class="col-sm-12 text-justify">
+                            <h3 class="card-title font-sofia text-center"><b>{{userData.Name}}</b></h3>
+                            <p class="card-text text-left">
+                                <b>Email: </b>{{userData.Email}}<br>
+                                <b>MobileNo: </b>{{userData.MobileNo}}<br>
+                                <b>Completed Enquiry: </b>{{userData.CompletedEnquiry}}<br>
+                                <b>Assign Forms: </b>{{userData.AssignEnquiry}}<br>
+                                <b>Address: </b>{{userData.Address}}, {{userData.Landmark}} , {{userData.City}}, {{userData.State}}, {{userData.Zip}}.<br>
+                            </p>
+                            <!-- <button class="btn btn-primary" (click)="OnEditProfile()">Edit Profile</button> -->
+                        </div>
+                    </div>
+                   
+                    
+                    
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</div>

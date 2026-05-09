@@ -32,6 +32,9 @@ import { ViewinsurenceformComponent } from './Pages/viewinsurenceform/viewinsure
 import { VirtualCardComponent } from './Pages/virtual-card/virtual-card.component';
 import { AddeditUserComponent } from './Pages/addedit-user/addedit-user.component';
 import { AddinsuranceformComponent } from './Pages/addinsuranceform/addinsuranceform.component';
+import { ViewUserComponent } from './Pages/view-user/view-user.component';
+import { DialogNavComponent } from './Pages/Shared/dialog-nav/dialog-nav.component';
+import { DeleteUserComponent } from './Pages/delete-user/delete-user.component';
 
 
 @NgModule({
@@ -44,7 +47,10 @@ import { AddinsuranceformComponent } from './Pages/addinsuranceform/addinsurance
     VirtualCardComponent,
     Editinsuranceform,
     AddeditUserComponent,
-    AddinsuranceformComponent
+    AddinsuranceformComponent,
+    ViewUserComponent,
+    DialogNavComponent,
+    DeleteUserComponent
   ],
   imports: [
     BrowserModule,

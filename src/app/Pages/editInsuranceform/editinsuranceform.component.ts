@@ -83,6 +83,7 @@ export class Editinsuranceform implements OnInit {
     'mobile_photo_front': '',
     'mobile_photo_back': ''
   }]
+  title = 'Mobile Insurance Form';
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
   private address:AddressService,
   private snackbar:MatSnackBar,
@@ -215,7 +216,7 @@ export class Editinsuranceform implements OnInit {
 
   onSubmitAddress(){
     console.log("addressForm",this.addressForm.value);
-    if(this.isAddAddress){
+  
       this.addressForm.value.username = this.addressForm.value.mailId;
       let isActive = true;
       let isDeleted = false;
@@ -231,7 +232,6 @@ export class Editinsuranceform implements OnInit {
             duration:4000
           })
       })
-    }
 
   }
 

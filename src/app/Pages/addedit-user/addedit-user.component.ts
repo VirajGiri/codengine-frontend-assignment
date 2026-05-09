@@ -33,6 +33,8 @@ export class AddeditUserComponent implements OnInit {
     username: new FormControl('', []),
     _id: new FormControl('', []),
   })
+  userRoles:any = [];
+  title = "User Details";
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
   private user:UsersService,
   private snackbar:MatSnackBar,
@@ -47,10 +49,9 @@ export class AddeditUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.userRoles = JSON.parse(this.user.getUserRoles())
   }
-
-
+  
   setUpdateUserForm(updateData:UserData){
     this.userForm.patchValue(updateData);
   }

@@ -12,6 +12,7 @@ import { DialogService } from 'src/app/Services/dialog.service';
 })
 export class ViewinsurenceformComponent implements OnInit {
   InsuranceFormData:any;
+  title = 'Mobile Insurance Form';
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
   private address:AddressService,
   private snackbar:MatSnackBar,
