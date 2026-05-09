@@ -15,7 +15,7 @@
             <li>
                 <button mat-button [matMenuTriggerFor]="menu"
                 class="user mt-2 d-flex align-items-center">
-                <mat-icon class="user-image mr-1 pl-2 mt-4">account_circle</mat-icon>{{userData.Name}}
+                <mat-icon class="user-image mr-1 pl-2 mt-4">account_circle</mat-icon>{{userData?.Name}}
                 <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">

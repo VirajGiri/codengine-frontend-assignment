@@ -1,13 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConvertExcelService } from 'src/app/Services/convert-excel.service';
 import { DialogService } from 'src/app/Services/dialog.service';
 import { CounsellorService } from '../Services/counsellor.service';
 
 @Component({
+  standalone: true,
   selector: 'app-counsellor',
   templateUrl: './counsellor.component.html',
-  styleUrls: ['./counsellor.component.css']
+  styleUrls: ['./counsellor.component.css'],
+  imports: [CommonModule, MatTableModule, MatButtonModule, MatIconModule]
 })
 export class CounsellorComponent implements OnInit {
 

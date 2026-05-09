@@ -1,16 +1,24 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
 import { DomSanitizer } from '@angular/platform-browser';
 import { UserData } from 'src/app/Home/Admin/Interfaces/user-data.module';
 import { DialogService } from 'src/app/Services/dialog.service';
 import { UsersService } from 'src/app/Services/users.service';
+import { DialogNavComponent } from '../Shared/dialog-nav/dialog-nav.component';
 
 @Component({
+  standalone: true,
   selector: 'app-addedit-user',
   templateUrl: './addedit-user.component.html',
-  styleUrls: ['./addedit-user.component.css']
+  styleUrls: ['./addedit-user.component.css'],
+  imports: [CommonModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatSelectModule, DialogNavComponent]
 })
 export class AddeditUserComponent implements OnInit {
   operation:any
@@ -32,6 +40,7 @@ export class AddeditUserComponent implements OnInit {
     isActive: new FormControl(true, []),
     username: new FormControl('', []),
     _id: new FormControl('', []),
+    Password: new FormControl('', []),
   })
   userRoles:any = [];
   title = "User Details";
@@ -58,12 +67,12 @@ export class AddeditUserComponent implements OnInit {
 
   onCreateUser(){
     this.isSubmitted = true;
-    this.user.AddUser(this.userForm.value.Name,this.userForm.value.Email,
-      this.userForm.value.Role,this.userForm.value.username,
-      this.userForm.value.Password, this.userForm.value.Address,
-      this.userForm.value.City, this.userForm.value.State,
-      this.userForm.value.MobileNo,this.userForm.value.Landmark,
-      this.userForm.value.Zip).subscribe(res=>{
+    this.user.AddUser(this.userForm.value.Name!,this.userForm.value.Email!,
+      this.userForm.value.Role!,this.userForm.value.username!,
+      this.userForm.value.Password!, this.userForm.value.Address!,
+      this.userForm.value.City!, this.userForm.value.State!,
+      this.userForm.value.MobileNo!,this.userForm.value.Landmark!,
+      this.userForm.value.Zip!).subscribe(res=>{
       console.log('AddUser',res);
       if(res.success){
         this.snackbar.open("User Added !",res.message,{
@@ -84,12 +93,12 @@ export class AddeditUserComponent implements OnInit {
     console.log(this.userForm.value);
     
     this.isSubmitted = true;
-    this.user.UpdateUser(this.userForm.value._id,this.userForm.value.Name,
-      this.userForm.value.Role,this.userForm.value.AssignEnquiry,
-      this.userForm.value.CompletedEnquiry, this.userForm.value.Address,
-      this.userForm.value.City, this.userForm.value.State,
-      this.userForm.value.MobileNo,this.userForm.value.Landmark,
-      this.userForm.value.Zip).subscribe(res=>{
+    this.user.UpdateUser(this.userForm.value._id!,this.userForm.value.Name!,
+      this.userForm.value.Role!,this.userForm.value.AssignEnquiry!,
+      this.userForm.value.CompletedEnquiry!, this.userForm.value.Address!,
+      this.userForm.value.City!, this.userForm.value.State!,
+      this.userForm.value.MobileNo!,this.userForm.value.Landmark!,
+      this.userForm.value.Zip!).subscribe(res=>{
       console.log('UpdateUser',res);
       if(res.status){
         this.snackbar.open("Update Added !",res.message,{

@@ -1,12 +1,16 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button';
 import { AddressService } from 'src/app/Services/address.service';
 
 @Component({
+  standalone: true,
   selector: 'app-deleteaddress',
   templateUrl: './deleteaddress.component.html',
-  styleUrls: ['./deleteaddress.component.css']
+  styleUrls: ['./deleteaddress.component.css'],
+  imports: [CommonModule, MatDialogModule, MatButtonModule]
 })
 export class DeleteaddressComponent implements OnInit {
 

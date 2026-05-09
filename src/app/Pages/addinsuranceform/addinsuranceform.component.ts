@@ -1,16 +1,26 @@
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatIconModule } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { AddressService } from 'src/app/Services/address.service';
+import { DialogNavComponent } from '../Shared/dialog-nav/dialog-nav.component';
 
 @Component({
+  standalone: true,
   selector: 'app-addinsuranceform',
   templateUrl: './addinsuranceform.component.html',
-  styleUrls: ['./addinsuranceform.component.css']
+  styleUrls: ['./addinsuranceform.component.css'],
+  imports: [CommonModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatTabsModule, MatProgressBarModule, DialogNavComponent]
 })
 export class AddinsuranceformComponent implements OnInit {
 
@@ -160,7 +170,7 @@ export class AddinsuranceformComponent implements OnInit {
           const file: File | null = this.selectedFiles[element].file;
           if (file) {
             this.currentFile = file;
-            this.address.upload(this.currentFile,insurenceId,this.selectedFiles[element].filefor).subscribe((event: any) => {
+            this.address.upload(this.currentFile,insurenceId!,this.selectedFiles[element].filefor).subscribe((event: any) => {
                 if(event){
                   this.isUploadPhoto = false;
                   if (event.type === HttpEventType.UploadProgress) {
@@ -248,11 +258,11 @@ export class AddinsuranceformComponent implements OnInit {
     console.log("addressForm",this.insuranceForm.value);
     if(this.insuranceForm.value){
       this.insuranceForm.value.username = this.insuranceForm.value.mailId;
-      this.address.AddInsurance(this.insuranceForm.value.mailId,this.insuranceForm.value.username,
-        this.insuranceForm.value.password,this.insuranceForm.value.contactOne,
-        this.insuranceForm.value.contactTwo,this.insuranceForm.value.aadhaarNumber,
-        this.insuranceForm.value.fullName,this.insuranceForm.value.address,
-        this.insuranceForm.value.mobileDetails,this.insuranceForm.value.paymentDetails)
+      this.address.AddInsurance(this.insuranceForm.value.mailId!,this.insuranceForm.value.username!,
+        this.insuranceForm.value.password!,this.insuranceForm.value.contactOne!,
+        this.insuranceForm.value.contactTwo!,this.insuranceForm.value.aadhaarNumber!,
+        this.insuranceForm.value.fullName!,this.insuranceForm.value.address!,
+        this.insuranceForm.value.mobileDetails as any,this.insuranceForm.value.paymentDetails as any)
         .subscribe(res =>{
           if(res.success){
             console.log("AddInsurance",res);
@@ -281,13 +291,13 @@ export class AddinsuranceformComponent implements OnInit {
     this.insuranceForm.value.username = this.insuranceForm.value.mailId;
     let isActive = true;
     let isDeleted = false;
-    this.address.UpdateAddress(this.insuranceForm.value.userId,
-      this.insuranceForm.value.username,this.insuranceForm.value.mailId,
-      this.insuranceForm.value.password,this.insuranceForm.value.confirm_password,this.insuranceForm.value.fullName,
-      this.insuranceForm.value._id,this.insuranceForm.value.aadhaarNumber,
-      this.insuranceForm.value.contactOne,this.insuranceForm.value.contactTwo,this.insuranceForm.value.address,
-      this.insuranceForm.value.mobileDetails,this.insuranceForm.value.paymentDetails,
-      isActive, isDeleted,this.insuranceForm.value.formBy)
+    this.address.UpdateAddress(this.insuranceForm.value.userId!,
+      this.insuranceForm.value.username!,this.insuranceForm.value.mailId!,
+      this.insuranceForm.value.password!,this.insuranceForm.value.confirm_password!,this.insuranceForm.value.fullName!,
+      this.insuranceForm.value._id!,this.insuranceForm.value.aadhaarNumber!,
+      this.insuranceForm.value.contactOne!,this.insuranceForm.value.contactTwo!,this.insuranceForm.value.address!,
+      this.insuranceForm.value.mobileDetails as any,this.insuranceForm.value.paymentDetails as any,
+      isActive, isDeleted,this.insuranceForm.value.formBy!)
       .subscribe(res =>{
         console.log("UpdateAddress",res);
         if(res.status){

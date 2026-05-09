@@ -25,7 +25,7 @@ export class LoginService extends AbstractService{
     .pipe(catchError(this.handleError))
   }
   userProfile(){
-    const body = {'_id':this.getData()._id}
+    const body = {'_id':this.getData()!._id}
     return this.http.post<any>(`${this.localUrl}api/get_user_profile`,body)
     .pipe(catchError(this.handleError))
   }
@@ -48,7 +48,7 @@ export class LoginService extends AbstractService{
     this.router.navigate(['in'])
   }
 
-  getData(): UserData{
+  getData(): UserData | null{
     const user = localStorage.getItem('userData');
     return user === null ? null : JSON.parse(user);
   }

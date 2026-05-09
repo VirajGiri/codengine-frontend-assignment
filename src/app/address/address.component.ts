@@ -7,6 +7,7 @@ import { DialogService } from '../Services/dialog.service';
 import { LoginService } from '../Services/login.service';
 
 @Component({
+  standalone: false,
   selector: 'app-address',
   templateUrl: './address.component.html',
   styleUrls: ['./address.component.css']

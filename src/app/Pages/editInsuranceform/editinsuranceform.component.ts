@@ -1,16 +1,26 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { AddressService } from 'src/app/Services/address.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
+import { DialogNavComponent } from '../Shared/dialog-nav/dialog-nav.component';
 
 @Component({
+  standalone: true,
   selector: 'app-editinsuranceform',
   templateUrl: './editinsuranceform.component.html',
-  styleUrls: ['./editinsuranceform.component.css']
+  styleUrls: ['./editinsuranceform.component.css'],
+  imports: [CommonModule, ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatTabsModule, MatProgressBarModule, DialogNavComponent]
 })
 export class Editinsuranceform implements OnInit {
 
@@ -162,7 +172,7 @@ export class Editinsuranceform implements OnInit {
           const file: File | null = this.selectedFiles[element].file;
           if (file) {
             this.currentFile = file;
-            this.address.upload(this.currentFile,insurenceId,this.selectedFiles[element].filefor).subscribe((event: any) => {
+            this.address.upload(this.currentFile,insurenceId!,this.selectedFiles[element].filefor).subscribe((event: any) => {
                 if(event){
                   if (event.type === HttpEventType.UploadProgress) {
                     this.progress = Math.round(100 * event.loaded / event.total);
@@ -220,13 +230,13 @@ export class Editinsuranceform implements OnInit {
       this.addressForm.value.username = this.addressForm.value.mailId;
       let isActive = true;
       let isDeleted = false;
-      this.address.UpdateAddress(this.addressForm.value.userId,
-        this.addressForm.value.username,this.addressForm.value.mailId,
-        this.addressForm.value.password,this.addressForm.value.confirm_password,this.addressForm.value.fullName,
-        this.addressForm.value._id,this.addressForm.value.aadhaarNumber,
-        this.addressForm.value.contactOne,this.addressForm.value.contactTwo,this.addressForm.value.address,
-        this.addressForm.value.mobileDetails,this.addressForm.value.paymentDetails,
-        isActive,isDeleted, this.addressForm.value.formBy)
+      this.address.UpdateAddress(this.addressForm.value.userId!,
+        this.addressForm.value.username!,this.addressForm.value.mailId!,
+        this.addressForm.value.password!,this.addressForm.value.confirm_password!,this.addressForm.value.fullName!,
+        this.addressForm.value._id!,this.addressForm.value.aadhaarNumber!,
+        this.addressForm.value.contactOne!,this.addressForm.value.contactTwo!,this.addressForm.value.address!,
+        this.addressForm.value.mobileDetails as any,this.addressForm.value.paymentDetails as any,
+        isActive,isDeleted, this.addressForm.value.formBy!)
         .subscribe(res =>{
           this.snackbar.open("Address Updated !",res.message,{
             duration:4000

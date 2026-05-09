@@ -12,7 +12,7 @@ export interface UserData {
     MobileNo?:string,
     Landmark?:string,
     Zip?:string,
-    isActive?:Boolean,
+    isActive?:boolean,
     created_by?:string,
     created_by_id?:string,
 }

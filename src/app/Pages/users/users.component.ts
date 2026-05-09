@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource } from '@angular/material/table';
 import { DialogService } from 'src/app/Services/dialog.service';
 import { LoginService } from 'src/app/Services/login.service';
@@ -6,9 +10,11 @@ import { UsersService } from 'src/app/Services/users.service';
 import { AdminService } from '../../Home/Admin/Services/admin.service';
 
 @Component({
+  standalone: true,
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.css'],
+  imports: [CommonModule, MatTableModule, MatButtonModule, MatIconModule]
 })
 export class UsersComponent implements OnInit {
 

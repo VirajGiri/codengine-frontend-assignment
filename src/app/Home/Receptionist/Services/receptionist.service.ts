@@ -18,7 +18,7 @@ export class ReceptionistService extends AbstractService{
   GetInsurenceFormList():Observable<insuranceFormData>{
     const httpParams = new HttpParams()
     const body = {
-      'userId': this.login.getData()['_id']
+      'userId': this.login.getData()!['_id']
     }
     return this.http.post<insuranceFormData>(`${this.localUrl}api/get_all_insurance`,body, {params:httpParams})
     .pipe(catchError(this.handleError))

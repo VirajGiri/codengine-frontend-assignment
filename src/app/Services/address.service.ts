@@ -30,11 +30,11 @@ export class AddressService extends AbstractService{
       'aadhaarNumber':aadhaarNumber,
       'mobileDetails': mobileDetails,
       'paymentDetails':paymentDetails,
-      'userId':this.login.getData()['_id'],
+      'userId':this.login.getData()!['_id'],
       'isActive':true,
       'isDeleted':false,
       'isVerified':false,
-      'formBy':this.login.getData()['Role']
+      'formBy':this.login.getData()!['Role']
     }
     return this.http.post<addressRes>(`${this.localUrl}api/add_insurance`,body, {params:httpParams})
     .pipe(catchError(this.handleError))
@@ -88,7 +88,7 @@ export class AddressService extends AbstractService{
     const formData: FormData = new FormData();
     formData.append('file', file);
     formData.append('insurenceId', insurenceId);
-    formData.append('userId', this.login.getData()['_id'] || '');
+    formData.append('userId', this.login.getData()!['_id'] || '');
     if(filefor === 'aadhaar_pic_front'){
       formData.append('aadhaar_pic_front', '1');
     }

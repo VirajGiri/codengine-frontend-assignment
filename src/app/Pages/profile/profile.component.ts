@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { DialogService } from 'src/app/Services/dialog.service';
 import { LoginService } from 'src/app/Services/login.service';
 
 @Component({
+  standalone: true,
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
+  imports: [CommonModule]
 })
 export class ProfileComponent implements OnInit {
 

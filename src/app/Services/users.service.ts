@@ -17,13 +17,13 @@ export class UsersService extends AbstractService{
 
    GetAllUsers():Observable<UserData>{
     let body = {};
-     if(this.login.getData().Role == "admin"){
+     if(this.login.getData()!.Role == "admin"){
         body = {
           'admin': true
         }
      }else{
       body = {
-        'userId': this.login.getData()['_id']
+        'userId': this.login.getData()!['_id']
       }
      }
     
@@ -51,7 +51,7 @@ export class UsersService extends AbstractService{
             'Zip':Zip,
             'isActive': true,
             'created_by': 'admin',
-            'created_by_id': this.login.getData()['_id']
+            'created_by_id': this.login.getData()!['_id']
     }
     return this.http.post<UserDataRes>(`${this.localUrl}api/add_user`,body, {params:httpParams})
     .pipe(catchError(this.handleError))

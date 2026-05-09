@@ -1,12 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoginService } from '../Services/login.service';
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
+  standalone: true,
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatCardModule]
 })
 export class LoginComponent implements OnInit {
 
@@ -39,7 +46,7 @@ export class LoginComponent implements OnInit {
   }
   public findInvalidControls() {
     const invalid = [];
-    const controls = this.loginForm.controls;
+    const controls = this.loginForm.controls as {[key: string]: any};
     for (const name in controls) {
         if (controls[name].invalid) {
             invalid.push(name);
@@ -56,8 +63,8 @@ export class LoginComponent implements OnInit {
         return;
       }else{
   
-      this.loginService.loginUser(this.loginForm.value.Email, 
-        this.loginForm.value.password).subscribe(res =>{
+      this.loginService.loginUser(this.loginForm.value.Email!, 
+        this.loginForm.value.password!).subscribe(res =>{
         console.log("loginForm",res)
         if(res.success){
         this.snackbar.open("Login Success !","",{

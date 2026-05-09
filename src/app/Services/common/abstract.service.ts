@@ -1,15 +1,14 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs/internal/observable/throwError';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AbstractService {
 
-  // public localUrl: string = 'http://localhost:21011/';
-  // public localUrl:string = 'http://3.109.154.121:21011/';
-  public localUrl:string = 'http://13.233.124.163:21011/';
+  public localUrl: string = environment.api;
   
   constructor() { }
   protected handleError = (error: HttpErrorResponse) => {
