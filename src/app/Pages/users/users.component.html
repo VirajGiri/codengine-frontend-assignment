@@ -48,7 +48,17 @@
 
         <ng-container matColumnDef="MobileNo">
           <th mat-header-cell *matHeaderCellDef>Mobile</th>
-          <td mat-cell *matCellDef="let element">{{ element.MobileNo }}</td>
+          <td mat-cell *matCellDef="let element">{{ element.MobileNo || '—' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="BranchCity">
+          <th mat-header-cell *matHeaderCellDef>Branch City</th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngIf="element.BranchCity" class="city-badge">
+              <span class="city-dot"></span>{{ element.BranchCity }}
+            </span>
+            <span *ngIf="!element.BranchCity" class="no-val">—</span>
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="Actions">
@@ -70,7 +80,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
         <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell no-data-cell" colspan="6">
+          <td class="mat-cell no-data-cell" colspan="7">
             No users matching &ldquo;{{ input.value }}&rdquo;
           </td>
         </tr>

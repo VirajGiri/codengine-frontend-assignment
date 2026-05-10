@@ -35,8 +35,12 @@ export class SidebarComponent implements OnInit {
           this.user.setUserRoles(element.allowedRoles);
         }
       });
+      // On initial login, navigate to the first sidebar item so it is active
+      if (!this.router.url.includes('/in/')) {
+        const firstPath = this.getFullPath(this.sidebarItems[0]);
+        this.router.navigate([firstPath]);
+      }
     });
-    this.router.navigate(['in/' + this.userRole]);
   }
 
   ngOnInit(): void {

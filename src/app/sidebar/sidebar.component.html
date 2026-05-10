@@ -29,7 +29,8 @@
       <a *ngFor="let item of sidebarItems"
          class="nav-item"
          [routerLink]="getFullPath(item)"
-         routerLinkActive="nav-item-active">
+         routerLinkActive="nav-item-active"
+         [routerLinkActiveOptions]="{exact: true}">
         <span class="nav-icon-wrap">
           <mat-icon>{{ item.icon }}</mat-icon>
         </span>

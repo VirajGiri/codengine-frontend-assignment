@@ -172,3 +172,21 @@
   transition: background 0.15s;
 }
 .btn-cancel:hover { background: #f3f4f6; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .profile-layout { flex-direction: column; }
+  .identity-card { width: 100%; flex-direction: row; align-items: center; text-align: left; }
+  .identity-card .avatar-circle { margin-bottom: 0; flex-shrink: 0; }
+  .details-card { min-width: unset; width: 100%; }
+}
+@media (max-width: 640px) {
+  .details-grid { grid-template-columns: 1fr; }
+  .det-full { grid-column: 1; }
+  .edit-grid { grid-template-columns: 1fr; }
+  .field-full { grid-column: 1; }
+  .identity-card { flex-direction: column; text-align: center; }
+}
+@media (max-width: 480px) {
+  .profile-card { padding: 18px 14px; }
+}

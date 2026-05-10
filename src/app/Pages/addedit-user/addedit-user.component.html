@@ -1,84 +1,222 @@
-<app-dialog-nav [title]="title"></app-dialog-nav>
+﻿<app-dialog-nav [title]="title"></app-dialog-nav>
 
 <div class="dlg-wrapper">
-  <div class="dlg-header">
-    <span class="dlg-title">{{ operation }} User</span>
+
+  <!-- Dialog header strip -->
+  <div class="dlg-hero">
+    <div class="dlg-hero-avatar">
+      <mat-icon>{{ isAddUser ? 'person_add' : 'manage_accounts' }}</mat-icon>
+    </div>
+    <div class="dlg-hero-text">
+      <span class="dlg-hero-title">{{ isAddUser ? 'Create New User' : 'Edit User' }}</span>
+      <span class="dlg-hero-sub" *ngIf="!isAddUser">{{ userForm.get('Name')?.value }}</span>
+      <span class="dlg-hero-sub" *ngIf="isAddUser">Fill in the details below — default password is 1234</span>
+    </div>
   </div>
 
-  <form [formGroup]="userForm" novalidate class="dlg-body">
+  <!-- Tabs -->
+  <mat-tab-group [(selectedIndex)]="activeTab" class="dlg-tabs" animationDuration="150ms">
 
-    <!-- Row 1: Name, Role, Mobile -->
-    <div class="form-grid">
-      <div class="field-group">
-        <label class="field-label">Full Name</label>
-        <input class="field-input" type="text" formControlName="Name" placeholder="Enter name">
-      </div>
+    <!-- ═══ Tab 1: Basic Info ═══ -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="tab-icon">person</mat-icon>
+        <span class="tab-txt">Basic</span>
+      </ng-template>
+      <form [formGroup]="userForm" novalidate class="tab-body">
+        <div class="form-grid">
 
-      <div class="field-group" *ngIf="isAddUser">
-        <label class="field-label">Role</label>
-        <select class="field-input field-select" formControlName="Role">
-          <option value="">Select Role</option>
-          <option *ngFor="let r of userRoles" [value]="r">{{ r | titlecase }}</option>
-        </select>
-      </div>
-      <div class="field-group" *ngIf="!isAddUser">
-        <label class="field-label">Role</label>
-        <input class="field-input" type="text" formControlName="Role" readonly>
-      </div>
+          <div class="field-group col-full">
+            <label class="field-label">Full Name <span class="req">*</span></label>
+            <input class="field-input" type="text" formControlName="Name" placeholder="e.g. Rahul Sharma" autocomplete="off">
+            <span class="ferr" *ngIf="isSubmitted && userForm.get('Name')?.invalid">Full name is required.</span>
+          </div>
 
-      <div class="field-group">
-        <label class="field-label">Mobile No</label>
-        <input class="field-input" type="tel" formControlName="MobileNo" placeholder="Mobile number">
-      </div>
+          <div class="field-group">
+            <label class="field-label">Role <span class="req">*</span></label>
+            <select *ngIf="isAddUser" class="field-input field-select" formControlName="Role">
+              <option value="">Select role</option>
+              <option *ngFor="let r of userRoles" [value]="r">{{ r | titlecase }}</option>
+            </select>
+            <input *ngIf="!isAddUser" class="field-input" type="text" formControlName="Role" readonly>
+            <span class="ferr" *ngIf="isSubmitted && userForm.get('Role')?.invalid">Role is required.</span>
+          </div>
 
-      <div class="field-group" *ngIf="isAddUser">
-        <label class="field-label">Email</label>
-        <input class="field-input" [class.field-error]="isSubmitted && isError.username"
-               type="email" formControlName="Email" placeholder="Email address">
-        <span class="field-error-msg" *ngIf="isSubmitted && isError.username">Email is already registered.</span>
-      </div>
-      <div class="field-group" *ngIf="!isAddUser">
-        <label class="field-label">Email</label>
-        <input class="field-input" type="email" formControlName="Email" readonly>
-      </div>
-    </div>
+          <div class="field-group">
+            <label class="field-label">Mobile No</label>
+            <div class="input-prefix-row">
+              <span class="input-prefix">+91</span>
+              <input class="field-input prefix-input" type="tel" formControlName="MobileNo" placeholder="XXXXX XXXXX">
+            </div>
+          </div>
 
-    <div class="section-divider">Address</div>
+          <div class="field-group" *ngIf="isAddUser">
+            <label class="field-label">Email <span class="req">*</span></label>
+            <input class="field-input" type="email" formControlName="Email" placeholder="email@example.com" autocomplete="off">
+            <span class="ferr" *ngIf="isSubmitted && userForm.get('Email')?.invalid">Valid email is required.</span>
+          </div>
+          <div class="field-group" *ngIf="!isAddUser">
+            <label class="field-label">Email</label>
+            <input class="field-input" type="email" formControlName="Email" readonly>
+          </div>
 
-    <!-- Row 2: Address -->
-    <div class="form-grid">
-      <div class="field-group field-full">
-        <label class="field-label">Address</label>
-        <input class="field-input" type="text" formControlName="Address" placeholder="Street address">
-      </div>
-      <div class="field-group field-full">
-        <label class="field-label">Landmark / Address 2</label>
-        <input class="field-input" type="text" formControlName="Landmark" placeholder="Apartment, floor, etc.">
-      </div>
-      <div class="field-group">
-        <label class="field-label">City</label>
-        <input class="field-input" type="text" formControlName="City" placeholder="City">
-      </div>
-      <div class="field-group">
-        <label class="field-label">State</label>
-        <select class="field-input field-select" formControlName="State">
-          <option value="Maharashtra">Maharashtra</option>
-        </select>
-      </div>
-      <div class="field-group">
-        <label class="field-label">ZIP</label>
-        <input class="field-input" type="text" formControlName="Zip" placeholder="ZIP">
-      </div>
-    </div>
+        </div>
+      </form>
+    </mat-tab>
 
-  </form>
+    <!-- ═══ Tab 2: Credentials ═══ -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="tab-icon">lock</mat-icon>
+        <span class="tab-txt">Login</span>
+      </ng-template>
+      <form [formGroup]="userForm" class="tab-body">
 
+        <div class="form-grid">
+          <div class="field-group col-full">
+            <label class="field-label">Username <span class="req">*</span></label>
+            <div class="input-icon-row">
+              <input class="field-input" type="text" formControlName="username"
+                     [readonly]="!isAddUser"
+                     placeholder="auto-generated — editable"
+                     autocomplete="off"
+                     (blur)="onUsernameBlur()">
+              <mat-icon class="icon-check ok"  *ngIf="!usernameChecking && !usernameTaken && userForm.get('username')?.value">check_circle</mat-icon>
+              <mat-icon class="icon-check err" *ngIf="!usernameChecking && usernameTaken">cancel</mat-icon>
+              <mat-progress-spinner *ngIf="usernameChecking" mode="indeterminate" diameter="18" class="icon-spin"></mat-progress-spinner>
+            </div>
+            <span class="fhint">Users log in with this username. Auto-generated from name.</span>
+            <span class="ferr" *ngIf="usernameTaken">Username already taken. Choose another.</span>
+            <span class="ferr" *ngIf="isSubmitted && userForm.get('username')?.invalid">Username is required.</span>
+          </div>
+        </div>
+
+        <!-- Add mode: password hint -->
+        <div class="cred-info-card green" *ngIf="isAddUser">
+          <mat-icon>lock_open</mat-icon>
+          <div>
+            <strong>Default password is set to 1234</strong>
+            <p>The user should change their password after first login.</p>
+          </div>
+        </div>
+
+        <!-- Edit mode: reset password -->
+        <div class="cred-info-card amber" *ngIf="!isAddUser">
+          <mat-icon>lock_reset</mat-icon>
+          <div class="cred-info-text">
+            <strong>Reset Password</strong>
+            <p>This will reset the user's password back to <code>1234</code>.</p>
+          </div>
+          <button type="button" class="btn-reset" (click)="onResetPassword()" [disabled]="resetingPassword">
+            <mat-progress-spinner *ngIf="resetingPassword" mode="indeterminate" diameter="14"></mat-progress-spinner>
+            <mat-icon *ngIf="!resetingPassword">lock_reset</mat-icon>
+            Reset
+          </button>
+        </div>
+
+      </form>
+    </mat-tab>
+
+    <!-- ═══ Tab 3: Personal Address ═══ -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="tab-icon">home</mat-icon>
+        <span class="tab-txt">Address</span>
+      </ng-template>
+      <form [formGroup]="userForm" class="tab-body">
+        <div class="form-grid">
+
+          <div class="field-group col-full">
+            <label class="field-label">Street Address</label>
+            <input class="field-input" type="text" formControlName="Address" placeholder="House / Street / Area">
+          </div>
+
+          <div class="field-group col-full">
+            <label class="field-label">Landmark / Address 2</label>
+            <input class="field-input" type="text" formControlName="Landmark" placeholder="Apartment, floor, near landmark">
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">City</label>
+            <select class="field-input field-select" formControlName="City">
+              <option value="">Select city</option>
+              <option *ngFor="let c of mhCities" [value]="c">{{ c }}</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">PIN Code</label>
+            <input class="field-input" type="text" formControlName="Zip" placeholder="e.g. 411001" maxlength="6">
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">State</label>
+            <div class="state-badge"><mat-icon>location_on</mat-icon> Maharashtra</div>
+          </div>
+
+        </div>
+      </form>
+    </mat-tab>
+
+    <!-- ═══ Tab 4: Branch ═══ -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="tab-icon">store</mat-icon>
+        <span class="tab-txt">Branch</span>
+      </ng-template>
+      <form [formGroup]="userForm" class="tab-body">
+        <div class="tab-info-bar">
+          <mat-icon>info_outline</mat-icon>
+          The branch this user is assigned to operate from.
+        </div>
+        <div class="form-grid">
+
+          <div class="field-group col-full">
+            <label class="field-label">Branch Name</label>
+            <input class="field-input" type="text" formControlName="BranchName" placeholder="e.g. Nick's Mobile Gallery — Pune Main">
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Branch City</label>
+            <select class="field-input field-select" formControlName="BranchCity">
+              <option value="">Select city</option>
+              <option *ngFor="let c of mhCities" [value]="c">{{ c }}</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Branch State</label>
+            <div class="state-badge"><mat-icon>location_on</mat-icon> Maharashtra</div>
+          </div>
+
+        </div>
+      </form>
+    </mat-tab>
+
+  </mat-tab-group>
+
+  <!-- Tab nav dots / step indicator -->
+  <div class="tab-steps">
+    <span class="step-dot" [class.active]="activeTab === 0" (click)="activeTab = 0" title="Basic Info"></span>
+    <span class="step-dot" [class.active]="activeTab === 1" (click)="activeTab = 1" title="Credentials"></span>
+    <span class="step-dot" [class.active]="activeTab === 2" (click)="activeTab = 2" title="Address"></span>
+    <span class="step-dot" [class.active]="activeTab === 3" (click)="activeTab = 3" title="Branch"></span>
+  </div>
+
+  <!-- Footer -->
   <div class="dlg-footer">
-    <button class="dlg-btn dlg-btn-primary" *ngIf="isAddUser" (click)="onCreateUser()">
-      <mat-icon style="font-size:16px;width:16px;height:16px">person_add</mat-icon> Create User
+    <button class="dlg-btn dlg-btn-ghost" *ngIf="activeTab > 0" (click)="activeTab = activeTab - 1">
+      <mat-icon>chevron_left</mat-icon> Back
+    </button>
+    <button class="dlg-btn dlg-btn-next" *ngIf="activeTab < 3" (click)="activeTab = activeTab + 1">
+      Next <mat-icon>chevron_right</mat-icon>
+    </button>
+    <button class="dlg-btn dlg-btn-primary" *ngIf="isAddUser && activeTab === 3" (click)="onCreateUser()">
+      <mat-icon>check</mat-icon> Create User
     </button>
     <button class="dlg-btn dlg-btn-primary" *ngIf="!isAddUser" (click)="onUpdateUser()">
-      <mat-icon style="font-size:16px;width:16px;height:16px">save</mat-icon> Save Changes
+      <mat-icon>save</mat-icon> Save Changes
     </button>
   </div>
+
 </div>

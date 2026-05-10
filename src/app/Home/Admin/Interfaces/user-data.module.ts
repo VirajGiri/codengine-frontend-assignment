@@ -12,9 +12,13 @@ export interface UserData {
     MobileNo?:string,
     Landmark?:string,
     Zip?:string,
+    BranchName?:string,
+    BranchCity?:string,
+    BranchState?:string,
     isActive?:boolean,
     created_by?:string,
     created_by_id?:string,
+    _id?:string,
 }
 export interface UserDataRes {
     status?: boolean

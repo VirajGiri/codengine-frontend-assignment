@@ -31,6 +31,23 @@
   text-transform: capitalize;
 }
 
+/* city badge */
+.city-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  color: #374151;
+}
+.city-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #818cf8;
+  flex-shrink: 0;
+}
+.no-val { color: #d1d5db; font-size: 0.85rem; }
+
 .mat-row,
 .mat-header-row {
   display: table-row;
@@ -45,3 +62,13 @@
     position: sticky;
     z-index: 10;
   }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .table-container { height: auto; max-height: 60vh; }
+  .user-avatar { width: 26px; height: 26px; font-size: 0.7rem; }
+  .role-chip { font-size: 0.68rem; padding: 2px 7px; }
+}
+@media (max-width: 480px) {
+  .city-badge { font-size: 0.72rem; }
+}

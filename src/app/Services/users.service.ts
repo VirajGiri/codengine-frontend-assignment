@@ -32,23 +32,27 @@ export class UsersService extends AbstractService{
   }
   
   AddUser(Name:string,Email:string,Role:string,username:string,
-    Password:string,Address:string,City:string,State:string,
-    MobileNo:string,Landmark:string,Zip:string):Observable<UserDataRes>{
+    Address:string,City:string,State:string,
+    MobileNo:string,Landmark:string,Zip:string,
+    BranchName:string,BranchCity:string):Observable<UserDataRes>{
     const httpParams = new HttpParams()
     const body = {
             'Name':Name,
             'Email':Email,
             'Role': Role,
             'username': username,
-            'password': Password,
+            'password': '1234',
             'AssignEnquiry': 0,
             'CompletedEnquiry': 0,
             'Address': Address,
             'City':City,
-            'State':State,
+            'State':'Maharashtra',
             'MobileNo': MobileNo,
             'Landmark': Landmark,
             'Zip':Zip,
+            'BranchName': BranchName,
+            'BranchCity': BranchCity,
+            'BranchState': 'Maharashtra',
             'isActive': true,
             'created_by': 'admin',
             'created_by_id': this.login.getData()!['_id']
@@ -59,7 +63,8 @@ export class UsersService extends AbstractService{
 
   UpdateUser(id:string,Name:string,Role:string,AssignEnquiry:string,
     CompletedEnquiry:string,Address:string,City:string,State:string,
-    MobileNo:string,Landmark:string,Zip:string):Observable<UserDataRes>{
+    MobileNo:string,Landmark:string,Zip:string,
+    BranchName:string,BranchCity:string):Observable<UserDataRes>{
     const httpParams = new HttpParams()
     const body = {
             '_id':id,
@@ -72,7 +77,10 @@ export class UsersService extends AbstractService{
             'State':State,
             'MobileNo': MobileNo,
             'Landmark': Landmark,
-            'Zip':Zip
+            'Zip':Zip,
+            'BranchName': BranchName,
+            'BranchCity': BranchCity,
+            'BranchState': 'Maharashtra'
     }
     return this.http.post<UserDataRes>(`${this.localUrl}api/update_user`,body, {params:httpParams})
     .pipe(catchError(this.handleError))
@@ -84,6 +92,16 @@ export class UsersService extends AbstractService{
   getUserRoles(){
     // return this.userRoles.asObservable();
     return localStorage['allowedRoles'];
+  }
+  CheckUsername(username:string, excludeId?:string):Observable<{taken:boolean}>{
+    const body:any = { username };
+    if(excludeId) body['excludeId'] = excludeId;
+    return this.http.post<{taken:boolean}>(`${this.localUrl}api/check_username`, body)
+    .pipe(catchError(this.handleError));
+  }
+  ResetPasswordAdmin(userId:string):Observable<UserDataRes>{
+    return this.http.post<UserDataRes>(`${this.localUrl}api/reset_password_admin`,{ _id: userId })
+    .pipe(catchError(this.handleError));
   }
   deleteUser(id:string):Observable<UserDataRes>{
     const body = {

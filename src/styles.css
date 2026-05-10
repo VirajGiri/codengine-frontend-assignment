@@ -215,3 +215,39 @@ mat-dialog-container {
   font-size: 0.9rem;
 }
 
+/* ════════════════════════════════════════════════
+   GLOBAL RESPONSIVE BREAKPOINTS
+   xs  : < 480px   (small phones)
+   sm  : < 640px   (phones)
+   md  : < 768px   (large phones / portrait tablet)
+   lg  : < 1024px  (landscape tablet / small laptop)
+   xl  : ≥ 1024px  (laptop / desktop)
+════════════════════════════════════════════════ */
+
+/* ── Responsive page wrapper ── */
+@media (max-width: 768px) {
+  .page-wrapper { padding: 16px 12px; }
+  .page-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .page-actions { width: 100%; flex-wrap: wrap; }
+  .search-box { width: 100%; }
+  .search-box input { width: 100%; }
+  .btn-action { width: 100%; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  .page-wrapper { padding: 12px 8px; }
+  .page-title { font-size: 1rem; }
+}
+
+/* ── Responsive table ── */
+@media (max-width: 768px) {
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .nmg-table .mat-mdc-cell,
+  .nmg-table .mat-mdc-header-cell { padding: 10px 10px !important; font-size: 0.8rem !important; }
+}
+
+/* ── Dialog full-screen on mobile ── */
+@media (max-width: 640px) {
+  .custom-dialog-class { width: 100vw !important; height: 100vh !important; max-width: 100vw !important; }
+}
+

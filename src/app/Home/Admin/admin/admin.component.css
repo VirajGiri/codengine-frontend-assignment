@@ -1,2 +1,6 @@
 /* Admin-specific overrides — table height */
 .table-scroll { max-height: calc(100vh - 220px); overflow-y: auto; }
+
+@media (max-width: 768px) {
+  .table-scroll { max-height: none; overflow-x: auto; }
+}

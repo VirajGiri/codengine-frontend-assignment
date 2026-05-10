@@ -36,7 +36,7 @@ export class UsersComponent implements OnInit {
   getUsersList(){
     this.user.GetAllUsers().subscribe(res=>{
       this.UsersList = res;
-      this.displayedColumns = ['SrNo','Role','Name','Username', 'MobileNo','Actions'];
+      this.displayedColumns = ['SrNo','Role','Name','Username','MobileNo','BranchCity','Actions'];
       this.dataSource = new MatTableDataSource(this.UsersList);
     });
   }

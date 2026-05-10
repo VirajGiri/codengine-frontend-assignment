@@ -79,3 +79,12 @@
   font-weight: 700;
   color: #374151;
 }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .view-dlg { min-width: unset; width: 100%; max-width: 100%; }
+  .detail-grid { grid-template-columns: 1fr; gap: 10px; padding: 14px 16px; }
+  .detail-full { grid-column: 1; }
+  .profile-strip { padding: 14px 16px; }
+  .profile-avatar { width: 42px; height: 42px; font-size: 1.1rem; }
+}

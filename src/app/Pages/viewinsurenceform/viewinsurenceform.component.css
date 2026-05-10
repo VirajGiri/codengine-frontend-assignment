@@ -142,3 +142,18 @@ code {
   border-radius: 8px;
   padding: 16px 20px;
 }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .vif-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .vif-wrapper { padding: 12px; }
+  .detail-grid { grid-template-columns: 1fr; }
+  .det-full { grid-column: 1; }
+  .vif-id-strip { flex-wrap: wrap; gap: 6px; }
+}
+@media (max-width: 480px) {
+  .vif-section { padding: 12px 14px; }
+  .section-title { font-size: 0.7rem; }
+}

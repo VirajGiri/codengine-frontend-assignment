@@ -63,7 +63,8 @@ export class ProfileComponent implements OnInit {
     this.user.UpdateUser(
       f._id!, f.Name!, f.Role!, f.AssignEnquiry!,
       f.CompletedEnquiry!, f.Address!, f.City!, f.State!,
-      f.MobileNo!, f.Landmark!, f.Zip!
+      f.MobileNo!, f.Landmark!, f.Zip!,
+      '', ''  // BranchName, BranchCity — not edited from profile
     ).subscribe((res: any) => {
       if (res.status) {
         this.snackbar.open('Profile updated!', 'OK', { duration: 3000 });

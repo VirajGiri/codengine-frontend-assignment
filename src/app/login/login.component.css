@@ -116,3 +116,11 @@
 }
 
 .login-btn:hover { background: var(--nmg-primary-hover); }
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .login-page { padding: 16px 12px; }
+  .login-card { padding: 24px 18px; }
+  .login-title { font-size: 1.1rem; }
+  .brand-icon { width: 48px; height: 48px; }
+}

@@ -162,3 +162,14 @@ mat-drawer {
   color: #475569;
   letter-spacing: 1px;
 }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  mat-drawer { width: 190px; }
+  .brand-name { font-size: 0.9rem; letter-spacing: 1px; }
+  .nav-item { padding: 9px 10px; font-size: 0.82rem; }
+}
+@media (max-width: 480px) {
+  mat-drawer { width: 100vw; }
+  mat-drawer-container { height: 100%; }
+}

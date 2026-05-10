@@ -45,28 +45,45 @@ mat-toolbar button[mat-icon-button] mat-icon {
 
 ul { list-style: none; margin: 0; padding: 0; }
 
+/* User menu button */
+.user-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--nmg-text);
+  line-height: 1;
+}
+.avatar-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+  color: var(--nmg-text-muted);
+  flex-shrink: 0;
+}
+.user-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--nmg-text);
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.chevron-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: var(--nmg-text-muted);
+  flex-shrink: 0;
+}
 
-button{
-    border: 0;
-    outline: none;
-    background: transparent;
-}
-ul,li{
-    list-style: none;
-}
-.user{
-    font-size: 14px;
-    vertical-align: center;
-}
-.user-image{
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-}
-.user-image-icon{
-    height: 18px;
-    font-size: 16px;
-}
-.mat-menu-content::ng-deep{
-    width: 160px;
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  mat-toolbar-row { padding: 0 8px !important; }
+  .user-name { max-width: 80px; font-size: 0.78rem; }
+  .avatar-icon { font-size: 24px; width: 24px; height: 24px; }
 }
