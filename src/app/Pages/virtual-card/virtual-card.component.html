@@ -1,21 +1,92 @@
-<div class="ins-card">
-    <div class="face front">
-      <h3 class="debit">Insurance Card</h3>
-      <h3 class="bank">VISA</h3>
-      <!-- <img class="chip" src="/assets/chip.png" alt="chip"> -->
-      <!-- <h3 class="number">0000 0000 0000 0001</h3> -->
-      <h3 class="number">{{customerDetails.uniqueId.split('/').join(' ')}}</h3>
-      <h5 class="valid"><span>VALID <br /> THRU</span><span>10/28</span></h5>
-      <h5 class="card-holder">{{customerDetails.fullName}}</h5>
-    </div>
-    <div class="face back">
-      <div class="blackbar"></div>
-      <div class="cvvtext">
-        <div class="white-bar"></div>
-        <div class="cvv">123</div>
+<div class="card-wrapper">
+<div class="card-scene">
+  <div class="ins-card">
+
+    <!-- FRONT -->
+    <div class="face front" #frontFace>
+      <div class="card-header">
+        <div class="card-header-brand">
+          <span class="nmg-shield">&#128737;</span>
+          <span class="nmg-title">NMG <span class="nmg-sub">NicksInfo</span></span>
+        </div>
+        <span class="nmg-tag">Mobile Insurance</span>
       </div>
-      <p class="text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis ex nec nulla posuere sollicitudin. Proin nec orci at est pellentesque malesuada eu a neque. Maecenas quis porttitor odio. Praesent faucibus dui nisl, ac luctus mauris pulvinar in. Morbi vitae ante a nunc ullamcorper rutrum.
-      </p>
+
+      <div class="card-body">
+        <div class="card-field">
+          <span class="field-label">Policy ID</span>
+          <span class="field-value policy-id">{{ customerDetails.uniqueId }}</span>
+        </div>
+        <div class="card-field">
+          <span class="field-label">Member Name</span>
+          <span class="field-value member-name">{{ customerDetails.fullName }}</span>
+        </div>
+        <div class="card-field-row">
+          <div class="card-field">
+            <span class="field-label">Valid Thru</span>
+            <span class="field-value">10 / 2028</span>
+          </div>
+          <div class="card-field">
+            <span class="field-label">Plan Type</span>
+            <span class="field-value">Mobile</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <span class="footer-status">&#9679;&nbsp; Active Coverage</span>
+        <span class="footer-logo">NMG</span>
+      </div>
     </div>
+
+    <!-- BACK -->
+    <div class="face back" #backFace>
+      <div class="card-header">
+        <div class="card-header-brand">
+          <span class="nmg-shield">&#128737;</span>
+          <span class="nmg-title">NMG <span class="nmg-sub">NicksInfo</span></span>
+        </div>
+        <span class="nmg-tag">Mobile Insurance</span>
+      </div>
+
+      <div class="card-back-body">
+        <div class="back-field">
+          <span class="back-field-label">Policy</span>
+          <span class="back-field-val">{{ customerDetails.uniqueId }}</span>
+        </div>
+        <div class="back-field">
+          <span class="back-field-label">Device</span>
+          <span class="back-field-val">{{ customerDetails.mobileDetails?.company }} {{ customerDetails.mobileDetails?.model }}</span>
+        </div>
+        <div class="back-field">
+          <span class="back-field-label">Premium</span>
+          <span class="back-field-val">&#8377; {{ customerDetails.paymentDetails?.Amount }}</span>
+        </div>
+        <div class="back-disclaimer">
+          This card is issued by Nicks Mobile Gallery. Present this card with a valid photo ID when filing a claim.
+          For assistance, contact NMG customer care.
+        </div>
+      </div>
+
+      <div class="card-footer back-footer">
+        <span>www.nicksmobilegallery.com</span>
+        <span>NMG &copy; 2025</span>
+      </div>
+    </div>
+
   </div>
+</div>
+
+<div class="card-actions">
+  <button class="dl-btn dl-img" (click)="downloadAsImage()" [disabled]="loadingImg || loadingPdf">
+    <span class="dl-spinner" *ngIf="loadingImg"></span>
+    <span class="dl-icon" *ngIf="!loadingImg">&#128247;</span>
+    {{ loadingImg ? 'Saving...' : 'Save as Image' }}
+  </button>
+  <button class="dl-btn dl-pdf" (click)="downloadAsPDF()" [disabled]="loadingImg || loadingPdf">
+    <span class="dl-spinner" *ngIf="loadingPdf"></span>
+    <span class="dl-icon" *ngIf="!loadingPdf">&#128462;</span>
+    {{ loadingPdf ? 'Generating...' : 'Download PDF' }}
+  </button>
+</div>
+</div>

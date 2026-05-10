@@ -1,69 +1,109 @@
 <app-dialog-nav [title]="title"></app-dialog-nav>
-<div class="container-fluid mt-5">
-<div class="card font-Varela">
-    <div class="card-header font-Messiri">
-        <b>Insurance-Id:</b> {{InsuranceFormData.uniqueId}}
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <h3 class="font-Messiri mb-0 text-info">Customer Details</h3>
-        <div class="col-sm-4">
-          <span style="text-align: left;">
-            <p><b class="text-secondary">Name: </b>{{InsuranceFormData.fullName}}<br>
-              <b class="text-secondary">Mobile No: </b>{{InsuranceFormData.contactOne}} / {{InsuranceFormData.contactTwo}}<br>
-              <b class="text-secondary">Email: </b>{{InsuranceFormData.mailId}}<br>
-            </p>
-          </span>
-        </div>
-        <div class="col-sm-4">
-          <p><b class="text-secondary">Username: </b>{{InsuranceFormData.username}}  <br>
-            <b class="text-secondary">Aadhaar No: </b>{{InsuranceFormData.aadhaarNumber}}<br>
-            <b class="text-secondary">Address: </b>{{InsuranceFormData.address}}<br>
-          </p>
-        </div>
-      </div>
-      <div class="row">
-        <h3 class="font-Messiri mb-0 text-info ">Mobile Phone Details</h3>
-        <div class="col-sm-4">
-          <span style="text-align: left;">
-            <p><b class="text-secondary">Company: </b>{{InsuranceFormData.mobileDetails.company}}<br>
-              <b class="text-secondary">Model No: </b>{{InsuranceFormData.mobileDetails.model}}<br>
-              <b class="text-secondary">IMEI: </b>{{InsuranceFormData.mobileDetails.imei}}<br>
-            </p>
-          </span>
-        </div>
-        <div class="col-sm-4">
-          <p>
-            <b class="text-secondary">Color: </b>{{InsuranceFormData.mobileDetails.color}}<br>
-            <b class="text-secondary">Physical Details: </b>
-            <span *ngIf="InsuranceFormData.mobileDetails.physicalDetails">{{getPhysicalDetails(InsuranceFormData.mobileDetails.physicalDetails)}}</span>
-            <br>
-          </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4">
-          <span style="text-align: left;">
-            <h3 class="font-Messiri mb-0 text-info">Payment Details</h3>
-            <p><b class="text-secondary">Amount: </b>{{InsuranceFormData.paymentDetails.Amount}}<br>
-              <b class="text-secondary">TransactionId: </b>{{InsuranceFormData.paymentDetails.TransactionId}}<br>
-            </p>
-          </span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <!-- <h3 class="font-Messiri mb-0 text-warning">Your Card is in Under Process.</h3> -->
-        </div>
-        <div class="col-sm-12">
-          <app-virtual-card [customerDetails]="InsuranceFormData"></app-virtual-card>
-        </div>
-      </div>
-    </div>
-    <div class="card-footer">
-      <h3 class="font-Messiri mb-0 text-danger">Your Card is in Under Process.</h3>
-        <!-- <button class="btn btn-primary btn-sm" (click)="OnEditAddress(InsuranceFormData)">Edit Form</button> -->
-      </div>
+
+<div class="vif-wrapper">
+
+  <!-- ID strip -->
+  <div class="vif-id-strip">
+    <mat-icon class="vif-id-icon">confirmation_number</mat-icon>
+    <span class="vif-id-label">Insurance ID</span>
+    <code class="vif-id-value">{{ InsuranceFormData.uniqueId }}</code>
+    <span class="vif-status" [class.verified]="InsuranceFormData.isVerified">
+      {{ InsuranceFormData.isVerified ? '✔ Verified' : '⧗ Pending' }}
+    </span>
   </div>
+
+  <div class="vif-grid">
+
+    <!-- Customer Details -->
+    <div class="vif-section">
+      <div class="section-title">
+        <mat-icon>person</mat-icon> Customer Details
+      </div>
+      <div class="detail-grid">
+        <div class="det-item">
+          <span class="det-label">Full Name</span>
+          <span class="det-value">{{ InsuranceFormData.fullName }}</span>
+        </div>
+        <div class="det-item">
+          <span class="det-label">Mobile</span>
+          <span class="det-value">{{ InsuranceFormData.contactOne }}&nbsp;/&nbsp;{{ InsuranceFormData.contactTwo }}</span>
+        </div>
+        <div class="det-item">
+          <span class="det-label">Email</span>
+          <span class="det-value">{{ InsuranceFormData.mailId }}</span>
+        </div>
+        <div class="det-item">
+          <span class="det-label">Username</span>
+          <span class="det-value">{{ InsuranceFormData.username }}</span>
+        </div>
+        <div class="det-item">
+          <span class="det-label">Aadhaar No</span>
+          <span class="det-value">{{ InsuranceFormData.aadhaarNumber }}</span>
+        </div>
+        <div class="det-item det-full">
+          <span class="det-label">Address</span>
+          <span class="det-value">{{ InsuranceFormData.address }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Details -->
+    <div class="vif-section">
+      <div class="section-title">
+        <mat-icon>phone_android</mat-icon> Mobile Phone Details
+      </div>
+      <div class="detail-grid">
+        <div class="det-item">
+          <span class="det-label">Company</span>
+          <span class="det-value">{{ InsuranceFormData.mobileDetails?.company }}</span>
+        </div>
+        <div class="det-item">
+          <span class="det-label">Model</span>
+          <span class="det-value">{{ InsuranceFormData.mobileDetails?.model }}</span>
+        </div>
+        <div class="det-item">
+          <span class="det-label">IMEI</span>
+          <span class="det-value"><code>{{ InsuranceFormData.mobileDetails?.imei }}</code></span>
+        </div>
+        <div class="det-item">
+          <span class="det-label">Color</span>
+          <span class="det-value">{{ InsuranceFormData.mobileDetails?.color }}</span>
+        </div>
+        <div class="det-item det-full" *ngIf="InsuranceFormData.mobileDetails?.physicalDetails">
+          <span class="det-label">Physical Condition</span>
+          <span class="det-value">
+            <span class="chip" *ngFor="let d of getPhysicalDetails(InsuranceFormData.mobileDetails.physicalDetails)">{{ d }}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Details -->
+    <div class="vif-section">
+      <div class="section-title">
+        <mat-icon>payments</mat-icon> Payment Details
+      </div>
+      <div class="detail-grid">
+        <div class="det-item">
+          <span class="det-label">Amount</span>
+          <span class="det-value det-amount">₹ {{ InsuranceFormData.paymentDetails?.Amount }}</span>
+        </div>
+        <div class="det-item">
+          <span class="det-label">Transaction ID</span>
+          <span class="det-value"><code>{{ InsuranceFormData.paymentDetails?.TransactionId }}</code></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Virtual Card -->
+  <div class="vif-card-section">
+    <div class="section-title">
+      <mat-icon>credit_card</mat-icon> Insurance Card
+    </div>
+    <app-virtual-card [customerDetails]="InsuranceFormData"></app-virtual-card>
+  </div>
+
 </div>
 

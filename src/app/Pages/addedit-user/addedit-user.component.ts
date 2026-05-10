@@ -25,7 +25,7 @@ export class AddeditUserComponent implements OnInit {
   operation:any
   isAddUser:boolean = false;
   isSubmitted :boolean = false;
-  isError:any;
+  isError:any = {};
   userForm = new FormGroup({
     Address: new FormControl('', []),
     AssignEnquiry: new FormControl('', []),
@@ -59,7 +59,8 @@ export class AddeditUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userRoles = JSON.parse(this.user.getUserRoles())
+    const roles = this.user.getUserRoles();
+    this.userRoles = roles ? JSON.parse(roles) : [];
   }
   
   setUpdateUserForm(updateData:UserData){

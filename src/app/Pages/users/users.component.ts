@@ -65,10 +65,9 @@ export class UsersComponent implements OnInit {
     });
   }
   OnViewUser(userData:any){
-    // this.dialog.ViewUser(userData).subscribe(result => {
-    //   console.log(`Dialog result: ${result}`);
-    //   this.getUsersList();
-    // });
+    this.dialog.ViewUser(userData).subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }

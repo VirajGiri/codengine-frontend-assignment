@@ -1,35 +1,138 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="card mt-3">
-                <div class="card-header">
-                   Your Profile
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-12 mt-3 text-center">
-                            <img src="https://www.w3schools.com/howto/img_avatar.png"
-                             alt="Avatar" style="width:200px" class="profile-img">
-                            <h3 class="card-title font-sofia"><b>{{userDetails.Name}}</b></h3>
-                            <p class="card-text text-left">
-                                <b>Email: </b>{{userDetails.Email}}<br>
-                                <b>MobileNo: </b>{{userDetails.MobileNo}}<br>
-                                <b>Completed Enquiry: </b>{{userDetails.CompletedEnquiry}}<br>
-                                <b>Assign Forms: </b>{{userDetails.AssignEnquiry}}<br><br>
-                                <b>Address: </b>{{userDetails.Address}}, {{userDetails.Landmark}} , {{userDetails.City}}, {{userDetails.State}}, {{userDetails.Zip}}.<br>
-                
-                            </p>
-                            <button class="btn btn-primary" (click)="OnEditProfile()">Edit Profile</button>
-                        </div>
-                    </div>
-                   
-                    
-                    
-                </div>
-                <div class="card-footer text-muted">
-                    2 days ago
-                </div>
-            </div>
-        </div>
+<div class="page-wrapper">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h2 class="page-title">My Profile</h2>
+    <div class="page-actions">
+      <button *ngIf="!isEditing" class="btn-action btn-create" (click)="startEdit()">
+        <mat-icon style="font-size:16px;width:16px;height:16px">edit</mat-icon> Edit Profile
+      </button>
+      <button *ngIf="isEditing" class="btn-action btn-cancel" (click)="cancelEdit()">
+        <mat-icon style="font-size:16px;width:16px;height:16px">close</mat-icon> Cancel
+      </button>
+      <button *ngIf="isEditing" class="btn-action btn-create" (click)="saveProfile()">
+        <mat-icon style="font-size:16px;width:16px;height:16px">save</mat-icon> Save Changes
+      </button>
     </div>
+  </div>
+
+  <div class="profile-layout">
+
+    <!-- Left: Identity card -->
+    <div class="profile-card identity-card">
+      <div class="avatar-circle">{{ userDetails.Name?.charAt(0) | uppercase }}</div>
+      <div class="identity-name">{{ userDetails.Name }}</div>
+      <span class="identity-role">{{ userDetails.Role | titlecase }}</span>
+      <div class="identity-divider"></div>
+      <div class="identity-stat">
+        <span class="stat-num">{{ userDetails.CompletedEnquiry }}</span>
+        <span class="stat-label">Completed</span>
+      </div>
+      <div class="identity-stat">
+        <span class="stat-num">{{ userDetails.AssignEnquiry }}</span>
+        <span class="stat-label">Assigned</span>
+      </div>
+    </div>
+
+    <!-- Right: View mode -->
+    <div class="profile-card details-card" *ngIf="!isEditing">
+      <div class="details-section-label">Contact Information</div>
+      <div class="details-grid">
+        <div class="det-item">
+          <span class="det-label">Full Name</span>
+          <span class="det-value">{{ userDetails.Name }}</span>
+        </div>
+        <div class="det-item">
+          <span class="det-label">Email</span>
+          <span class="det-value">{{ userDetails.Email }}</span>
+        </div>
+        <div class="det-item">
+          <span class="det-label">Mobile No</span>
+          <span class="det-value">{{ userDetails.MobileNo }}</span>
+        </div>
+        <div class="det-item">
+          <span class="det-label">Role</span>
+          <span class="det-value">{{ userDetails.Role | titlecase }}</span>
+        </div>
+      </div>
+      <div class="details-section-label" style="margin-top:20px">Address</div>
+      <div class="details-grid">
+        <div class="det-item det-full">
+          <span class="det-label">Street Address</span>
+          <span class="det-value">{{ userDetails.Address }}</span>
+        </div>
+        <div class="det-item">
+          <span class="det-label">Landmark</span>
+          <span class="det-value">{{ userDetails.Landmark }}</span>
+        </div>
+        <div class="det-item">
+          <span class="det-label">City</span>
+          <span class="det-value">{{ userDetails.City }}</span>
+        </div>
+        <div class="det-item">
+          <span class="det-label">State</span>
+          <span class="det-value">{{ userDetails.State }}</span>
+        </div>
+        <div class="det-item">
+          <span class="det-label">ZIP</span>
+          <span class="det-value">{{ userDetails.Zip }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Edit mode -->
+    <div class="profile-card details-card" *ngIf="isEditing">
+      <form [formGroup]="profileForm" novalidate>
+
+        <div class="details-section-label">Contact Information</div>
+        <div class="edit-grid">
+          <div class="field-group">
+            <label class="field-label">Full Name</label>
+            <input class="field-input" type="text" formControlName="Name" placeholder="Full name">
+          </div>
+          <div class="field-group">
+            <label class="field-label">Email</label>
+            <input class="field-input" type="email" formControlName="Email" readonly>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Mobile No</label>
+            <input class="field-input" type="tel" formControlName="MobileNo" placeholder="Mobile number">
+          </div>
+          <div class="field-group">
+            <label class="field-label">Role</label>
+            <input class="field-input" type="text" formControlName="Role" readonly>
+          </div>
+        </div>
+
+        <div class="details-section-label" style="margin-top:20px">Address</div>
+        <div class="edit-grid">
+          <div class="field-group field-full">
+            <label class="field-label">Street Address</label>
+            <input class="field-input" type="text" formControlName="Address" placeholder="Street address">
+          </div>
+          <div class="field-group field-full">
+            <label class="field-label">Landmark / Address 2</label>
+            <input class="field-input" type="text" formControlName="Landmark" placeholder="Landmark">
+          </div>
+          <div class="field-group">
+            <label class="field-label">City</label>
+            <input class="field-input" type="text" formControlName="City" placeholder="City">
+          </div>
+          <div class="field-group">
+            <label class="field-label">State</label>
+            <select class="field-input field-select" formControlName="State">
+              <option value="Maharashtra">Maharashtra</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">ZIP</label>
+            <input class="field-input" type="text" formControlName="Zip" placeholder="ZIP">
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+
 </div>

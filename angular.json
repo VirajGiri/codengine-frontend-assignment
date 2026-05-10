@@ -34,7 +34,13 @@
               "src/assets/bootstrap.bundle.min.js"
             ],
             "allowedCommonJsDependencies": [
-              "file-saver"
+              "file-saver",
+              "html2canvas",
+              "jspdf",
+              "canvg",
+              "core-js",
+              "raf",
+              "rgbcolor"
             ]
           },
           "configurations": {

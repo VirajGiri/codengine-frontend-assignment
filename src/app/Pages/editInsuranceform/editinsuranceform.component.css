@@ -1,6 +1,217 @@
-#grad1 {
-    background-color: #9C27B0;
-    background-image: linear-gradient(120deg, #f2fff3, #babdfa)
+/* ═══════════════════════════════════
+   Insurance Form — Responsive Styles
+   Mobile → Tablet → Desktop
+═══════════════════════════════════ */
+
+.ins-form-wrapper {
+  padding: 16px;
+  background: var(--nmg-bg, #f1f5f9);
+  min-height: calc(100vh - 56px);
+}
+.ins-form {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.ins-tabs .mat-mdc-tab-header {
+  background: #fff;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,.07);
+}
+.tab-label-text {
+  margin-left: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.tab-card {
+  background: #fff;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.07);
+  overflow: hidden;
+}
+.tab-card-header {
+  padding: 14px 20px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1c2333;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f8fafc;
+}
+.tab-card-body { padding: 20px; }
+.tab-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-top: 1px solid #e5e7eb;
+  background: #f8fafc;
+  flex-wrap: wrap;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+.form-grid .col-full { grid-column: 1 / -1; }
+.field-group { display: flex; flex-direction: column; gap: 4px; }
+.field-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+.req { color: #ef4444; }
+.field-input {
+  height: 42px;
+  padding: 0 12px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #111827;
+  background: #fff;
+  transition: border-color .15s;
+  width: 100%;
+  box-sizing: border-box;
+}
+.field-input:focus {
+  outline: none;
+  border-color: #2d3a8c;
+  box-shadow: 0 0 0 3px rgba(45,58,140,.1);
+}
+.field-input[readonly] { background: #f3f4f6; color: #9ca3af; cursor: not-allowed; }
+.field-error { font-size: 0.7rem; color: #ef4444; font-weight: 500; }
+.field-file {
+  width: 100%;
+  font-size: 0.82rem;
+  padding: 8px;
+  border: 1.5px dashed #d1d5db;
+  border-radius: 8px;
+  background: #f9fafb;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.field-file:hover { border-color: #2d3a8c; }
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #e5e7eb;
+}
+.check-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 16px;
+}
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: #374151;
+  cursor: pointer;
+  padding: 6px 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  transition: background .12s, border-color .12s;
+}
+.check-item:hover { background: #f0f4ff; border-color: #a5b4fc; }
+.check-item input[type=checkbox] {
+  width: 16px; height: 16px;
+  accent-color: #2d3a8c;
+  cursor: pointer; flex-shrink: 0;
+}
+.btn-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.83rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity .15s, transform .1s;
+}
+.btn-nav:hover { opacity: .88; transform: translateY(-1px); }
+.btn-prev { background: #f3f4f6; color: #374151; }
+.btn-next { background: #1c2333; color: #fff; }
+.btn-success { background: #16a34a; color: #fff; }
+.upload-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+.upload-group { display: flex; flex-direction: column; gap: 12px; }
+.upload-section-title {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+.upload-previews { display: flex; gap: 12px; flex-wrap: wrap; }
+.preview-box {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 4px;
+  flex: 1; min-width: 100px;
+}
+.preview-label { font-size: 0.65rem; font-weight: 600; color: #9ca3af; text-transform: uppercase; }
+.preview-img {
+  width: 100%; max-width: 180px; height: 110px;
+  object-fit: cover; border-radius: 8px;
+  border: 1.5px solid #e5e7eb;
+}
+.preview-placeholder {
+  width: 100%; max-width: 180px; height: 110px;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px dashed #d1d5db; border-radius: 8px;
+  color: #d1d5db; font-size: 2rem;
+}
+.upload-inputs { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.upload-progress { margin-top: 16px; border-radius: 4px; }
+.upload-count { font-size: 0.75rem; color: #6b7280; margin-top: 8px; }
+.payment-layout { display: flex; flex-direction: column; gap: 24px; align-items: center; }
+.qr-section { text-align: center; }
+.qr-img {
+  width: 160px; height: 160px;
+  object-fit: contain; border-radius: 10px;
+  border: 1.5px solid #e5e7eb;
+}
+.qr-label { margin-top: 6px; font-size: 0.72rem; color: #6b7280; font-weight: 600; }
+.payment-fields { width: 100%; display: flex; flex-direction: column; gap: 16px; }
+.done-card {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 48px 24px; text-align: center;
+  gap: 12px; min-height: 240px;
+}
+.done-icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: #16a34a; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem;
+}
+.done-title { font-size: 1.4rem; font-weight: 800; color: #111827; margin: 0; }
+.done-msg { font-size: 0.9rem; color: #6b7280; margin: 0; }
+
+@media (min-width: 600px) {
+  .form-grid { grid-template-columns: repeat(2, 1fr); }
+  .check-grid { grid-template-columns: repeat(3, 1fr); }
+  .upload-grid { grid-template-columns: repeat(2, 1fr); }
+  .upload-inputs { grid-template-columns: repeat(2, 1fr); }
+  .payment-layout { flex-direction: row; align-items: flex-start; }
+  .payment-fields { flex: 1; }
+}
+@media (min-width: 900px) {
+  .ins-form-wrapper { padding: 24px; }
+  .check-grid { grid-template-columns: repeat(4, 1fr); }
+  .tab-label-text { font-size: 0.85rem; }
 }
 
 #msform {

@@ -1,7 +1,8 @@
-<nav class="navbar fixed-top navbar-light" style="background-color: rgb(25, 116, 119);height: 64px;">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">{{title}}</a>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-      [mat-dialog-close]="true"></button>
-    </div>
-  </nav>
+<nav class="dlg-nav">
+  <div class="dlg-nav-inner">
+    <span class="dlg-nav-title">{{ title }}</span>
+    <button class="dlg-close" [mat-dialog-close]="true" aria-label="Close">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</nav>
